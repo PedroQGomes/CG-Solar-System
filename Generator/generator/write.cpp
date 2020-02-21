@@ -1,32 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
+#include <fstream>
+#include <string>
 
-int writeToF(char * text, FILE * file) {
-	if (file == NULL) {
+int writeToF(char * text, std::ofstream& file) {
+	if (!file.good()) {
 		printf("NULL File");
 		return -1;
 	}
-	fprintf(file, "%s", text);
+	
+	file << text;
+
 	return 1;
 }
 
-int writeVertexToF(float x, float y, float z, FILE * file) {
+int writeVertexToF(float x, float y, float z, std::ofstream& file) {
 
-	if (file == NULL) {
+	if (!file.good()) {
 		printf("NULL File");
 		return -1;
 	}
 
-	fprintf(file, "%f %f %f\n", x, y, z);
+	file << x << " " << y << " " << z << "\n";
 	return 1;
-}
-
-FILE * openFile(char * file) {
-	FILE * f;
-	fopen_s(&f, file, "w");
-	return f;
-}
-
-void closeFile(FILE * file) {
-	fclose(file);
 }

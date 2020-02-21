@@ -6,7 +6,7 @@
 *@param file nome do ficheiro
 *@return 1 if successful
 */
-int writeToF(char * text, FILE * file);
+int writeToF(char * text, std::ofstream& file);
 
 /*
 *Função que, dado um conjuto de coordenadas x,y e z, as escreve no ficheiro
@@ -17,17 +17,4 @@ int writeToF(char * text, FILE * file);
 *@param file nome do ficheiro
 *@return 1 if successful
 */
-int writeVertexToF(float x, float y, float z, FILE * file);
-
-/*
-*Função que, dado o nome de um ficheiro, devolve um apontador para o mesmo
-*@param file nome do ficheiro
-*@return apontador para o ficheiro (NULL no caso de insucesso)
-*/
-FILE * openFile(char * file);
-
-/*
-*Função que, dado um ficheiro, fecha o ficheiro
-*@param f apontador do ficheiro
-*/
-void closeFile(FILE * file);
+int writeVertexToF(float x, float y, float z, std::ofstream& file);

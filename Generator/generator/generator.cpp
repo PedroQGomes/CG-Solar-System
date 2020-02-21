@@ -1,9 +1,11 @@
 // generator.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
 #include <iostream>
 #include <string>
 #include "plane.h"
+
+//Path relativo para a diretoria onde os ficheiros são gerados
+std::string path = "../../Generated Files/";
 
 //Número mínimo de argumentos necessários ()
 const int MIN_ARGS = 4;
@@ -27,22 +29,22 @@ int main(int argc, char** argv)
 		return printf("Not enough arguments");
 	}
 
-	char * type = argv[1];
+	std::string type = argv[1];
+	std::string real_path = path + argv[3];
 
-	if (strcmp(type, "plane") == 0 && argc == PLANE_ARGS) {
+	if (type.compare("plane") == 0 && argc == PLANE_ARGS) {
 
 			printf("It's a plane!\n");
 			float size = std::stof(argv[2]);
-			printf("%f\n",size);
-			plane(size, argv[3]);
+			plane(size, real_path);
 	}
-	else if (strcmp(type, "box") == 0) {
+	else if (type.compare("box") == 0) {
 		printf("It's a box!\n");
 	}
-	else if(strcmp(type, "cone") == 0){
+	else if(type.compare("cone") == 0){
 		printf("It's a cone!\n");
 	}
-	else if (strcmp(type, "sphere") == 0) {
+	else if (type.compare("sphere") == 0) {
 		printf("It's a sphere!\n");
 	}
 	else printf("It's..... nothing.\n");
