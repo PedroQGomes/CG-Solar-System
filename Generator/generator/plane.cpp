@@ -18,12 +18,12 @@ int plane(float size, std::string file) {
 	z = size / 2;
 
 	printf("Writting\n");
-	//1º Triângulo
+	//10 Triangulo
 	writeVertexToF(-x, 0.0, z, f);
 	writeVertexToF( x, 0.0, z, f);
 	writeVertexToF( x, 0.0,-z, f);
 
-	//2º Triângulo
+	//20 Triangulo
 	writeVertexToF( x, 0.0,-z, f);
 	writeVertexToF(-x, 0.0,-z, f);
 	writeVertexToF(-x, 0.0, z, f);
