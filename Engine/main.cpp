@@ -11,9 +11,8 @@
 #include <GL/glut.h>
 #endif
 
-//std::string path = "../../../Generated Files/plano.txt";
+//std::string path = "../../../Generated Files/";
 std::string path = "plano.txt";
-model toDraw2;
 model toDraw;
 
 void changeSize(int w, int h) {
@@ -57,8 +56,7 @@ void renderScene(void) {
 
 
 // put drawing instructions here
-	//drawModel(toDraw);
-	drawModel(toDraw2);
+	drawModel(toDraw);
 
 	// End of frame
 	glutSwapBuffers();
@@ -88,22 +86,7 @@ int glMain(int argc, char**argv) {
 
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-
-	vertex v1 = newVertex(1.0, 0.0, 1.0);
-	vertex v2 = newVertex(1.0,0.0,-1.0);
-	vertex v3 = newVertex(-1.0, 0.0, -1.0);
-	addVertex(&toDraw, v1);
-	addVertex(&toDraw, v2);
-	addVertex(&toDraw, v3);
-	vertex v4 = newVertex(-1.0, 0.0, -1.0);
-	vertex v5 = newVertex(-1.0, 0.0, 1.0);
-	vertex v6 = newVertex(1.0, 0.0, 1.0);
-	addVertex(&toDraw, v4);
-	addVertex(&toDraw, v5);
-	addVertex(&toDraw, v6);
-	
-
+	glEnable(GL_CULL_FACE);	
 
 	// enter GLUT's main cycle
 	glutMainLoop();
@@ -118,9 +101,8 @@ int main(int argc, char **argv) {
 	//if (argc < 2) std::cout << "Número incorreto de argumentos";
 
 	//toDraw = parseModel(argv[argc]);
-	printf("Wat");
 	//printf("%s", path);
-	toDraw2 = parseModel(path);
+	toDraw = parseModel(path);
 	
 
 	//argc--;

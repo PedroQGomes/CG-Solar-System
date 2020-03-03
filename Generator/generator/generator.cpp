@@ -24,7 +24,6 @@ const int CONE_ARGS = 7;
 
 int main(int argc, char** argv)
 {
-	printf("Hello?\n");
 	if (argc < MIN_ARGS) {
 		return printf("Not enough arguments");
 	}
