@@ -4,27 +4,26 @@
 #include <string>
 #include "plane.h"
 
-//Path relativo para a diretoria onde os ficheiros são gerados
+//Path relativo para a diretoria onde os ficheiros sï¿½o gerados
 std::string path = "../../Generated Files/";
 
-//Número mínimo de argumentos necessários ()
+//Nï¿½mero mï¿½nimo de argumentos necessï¿½rios ()
 const int MIN_ARGS = 4;
 
-//Número de argumentos necessários para gerar um plano
+//Nï¿½mero de argumentos necessï¿½rios para gerar um plano
 const int PLANE_ARGS = 4;
 
-//Número de argumentos necessários para gerar uma caixa
+//Nï¿½mero de argumentos necessï¿½rios para gerar uma caixa
 const int BOX_ARGS = 6;
 
-//Número de argumentos necessários para gerar uma esfera
+//Nï¿½mero de argumentos necessï¿½rios para gerar uma esfera
 const int SPHERE_ARGS = 6;
 
-//Número de argumentos necessários para gerar um cone
+//Nï¿½mero de argumentos necessï¿½rios para gerar um cone
 const int CONE_ARGS = 7;
 
 int main(int argc, char** argv)
 {
-	printf("Hello?\n");
 	if (argc < MIN_ARGS) {
 		return printf("Not enough arguments");
 	}
