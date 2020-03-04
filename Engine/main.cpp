@@ -98,16 +98,16 @@ int glMain(int argc, char**argv) {
 
 int main(int argc, char **argv) {
 
-	//if (argc < 2) std::cout << "Número incorreto de argumentos";
-
+	if (argc < 2) toDraw = parseModel(path); else toDraw = parseModel(argv[1]);
+	
 	//toDraw = parseModel(argv[argc]);
 	//printf("%s", path);
-	toDraw = parseModel(path);
-	
 
+	
+	
 	//argc--;
 
-	glMain(argc, argv);
+	glMain(0, argv);
 
 	return 1;
 }
