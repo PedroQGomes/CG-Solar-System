@@ -34,7 +34,7 @@ void drawModel(model m) {
 		v3.z = m.vertexes.at(i).z;
 
         glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
-		glBegin(GL_POLYGON);
+		glBegin(GL_TRIANGLE_STRIP);
 		glVertex3f(v1.x, v1.y, v1.z);
 		glVertex3f(v2.x, v2.y, v2.z);
 		glVertex3f(v3.x, v3.y, v3.z);
