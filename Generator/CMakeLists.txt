@@ -10,4 +10,4 @@ add_executable(Generator
         generator/plane.cpp
         generator/plane.h
         generator/write.cpp
-        generator/write.h)
+        generator/write.h generator/box.cpp generator/box.h)

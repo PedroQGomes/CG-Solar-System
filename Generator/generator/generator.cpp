@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "plane.h"
+#include "box.h"
 
 //Path relativo para a diretoria onde os ficheiros s�o gerados
 std::string path = "../../Generated/";
@@ -12,9 +13,11 @@ const int MIN_ARGS = 4;
 
 //N�mero de argumentos necess�rios para gerar um plano
 const int PLANE_ARGS = 4;
+//plano 4 plano.txt
 
 //N�mero de argumentos necess�rios para gerar uma caixa
 const int BOX_ARGS = 6;
+//box 2 2 2 box.txt
 
 //N�mero de argumentos necess�rios para gerar uma esfera
 const int SPHERE_ARGS = 6;
@@ -39,6 +42,11 @@ int main(int argc, char** argv)
 	}
 	else if (type.compare("box") == 0) {
 		printf("It's a box!\n");
+		float x = std::stof(argv[2]);
+        float y = std::stof(argv[3]);
+        float z = std::stof(argv[4]);
+        std::string real_path2 = path + argv[5];
+        box(x,y,z,real_path2);
 	}
 	else if(type.compare("cone") == 0){
 		printf("It's a cone!\n");

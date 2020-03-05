@@ -12,7 +12,7 @@
 #endif
 
 //std::string path = "../../../Generated Files/";
-std::string path = "plano.txt";
+std::string path = "plano2.xml";
 model toDraw;
 
 void changeSize(int w, int h) {
@@ -53,7 +53,21 @@ void renderScene(void) {
 			  0.0f,1.0f,0.0f);
 
 // put the geometric transformations here
+    glBegin(GL_LINES);
+// X axis in red
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex3f(-100.0f, 0.0f, 0.0f);
+    glVertex3f( 100.0f, 0.0f, 0.0f);
+// Y Axis in Green
+    glColor3f(0.0f, 1.0f, 0.0f);
+    glVertex3f(0.0f, -100.0f, 0.0f);
+    glVertex3f(0.0f, 100.0f, 0.0f);
+// Z Axis in Blue
+    glColor3f(0.0f, 0.0f, 1.0f);
+    glVertex3f(0.0f, 0.0f, -100.0f);
+    glVertex3f(0.0f, 0.0f, 100.0f);
 
+    glEnd();
 
 // put drawing instructions here
 	drawModel(toDraw);
@@ -98,8 +112,13 @@ int glMain(int argc, char**argv) {
 
 int main(int argc, char **argv) {
 
-	if (argc < 2) toDraw = parseModel(path); else toDraw = parseModel(argv[1]);
-	
+
+	if (argc < 2) {
+	    printf("aqui");
+	    toDraw = parseModel(path);
+	} else {
+        toDraw = parseModel(argv[1]);
+    }
 	//toDraw = parseModel(argv[argc]);
 	//printf("%s", path);
 
