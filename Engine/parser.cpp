@@ -9,8 +9,7 @@ model parseModel(std::string file) {
 	float xF, yF, zF;
 	vertex v;
 
-	//std::ofstream f("plano.txt");
-	std::ifstream f("../../Generated/plano1.xml");
+	std::ifstream f(file);
 
 	if(f.fail()) printf("O ficheiro nao existe.\n");
 
@@ -23,7 +22,5 @@ model parseModel(std::string file) {
 		m.vertexes.push_back(v);
 	}
 
-
-	printf("Done?");
 	return m;
 	}
