@@ -12,7 +12,7 @@
 #endif
 
 //std::string path = "../../../Generated Files/";
-std::string path = "plano.txt";
+std::string testFile = "plano.txt";
 model toDraw;
 
 void changeSize(int w, int h) {
@@ -98,14 +98,7 @@ int glMain(int argc, char**argv) {
 
 int main(int argc, char **argv) {
 
-	if (argc < 2) toDraw = parseModel(path); else toDraw = parseModel(argv[1]);
-	
-	//toDraw = parseModel(argv[argc]);
-	//printf("%s", path);
-
-	
-	
-	//argc--;
+	if (argc < 2) toDraw = parseModel(testFile); else toDraw = parseModel(argv[1]);
 
 	glMain(0, argv);
 
