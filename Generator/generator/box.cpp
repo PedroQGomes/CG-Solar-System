@@ -53,5 +53,38 @@ int box(float x,float y, float z, std::string file) {
     writeVertexToF(-x1, y,-z1, f);
     writeVertexToF(-x1, y, z1, f);
 
+    //20 face esquerda
+    writeVertexToF( -x1, 0,-z1, f);
+    writeVertexToF(-x1, 0,z1, f);
+    writeVertexToF(-x1, y, z1, f);
+
+
+    writeVertexToF( -x1, y,z1, f);
+    writeVertexToF(-x1, y,-z1, f);
+    writeVertexToF(-x1, 0, -z1, f);
+
+
+    //20 face back
+    writeVertexToF( -x1, y,-z1, f);
+    writeVertexToF(x1, y,-z1, f);
+    writeVertexToF(x1, 0, -z1, f);
+
+
+    writeVertexToF( x1, 0,-z1, f);
+    writeVertexToF(-x1, 0,-z1, f);
+    writeVertexToF(-x1, y, -z1, f);
+
+
+    //20 face inferior
+    writeVertexToF( x1, 0,z1, f);
+    writeVertexToF(-x1, 0,z1, f);
+    writeVertexToF(-x1, 0, -z1, f);
+
+
+    writeVertexToF( -x1, 0,-z1, f);
+    writeVertexToF(x1, 0,-z1, f);
+    writeVertexToF(x1, 0, z1, f);
+
+
     return 1;
 }
