@@ -11,7 +11,7 @@ model parseModel(std::string file) {
 
 	std::ifstream f(file);
 
-	if(f.fail()) printf("O ficheiro não existe.\n");
+	if(f.fail()) printf("O ficheiro nao existe.\n");
 
 	while (f >> xF >> yF >> zF) {
 		printf("STILL PARSING!\n");
