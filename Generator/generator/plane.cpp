@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include "write.h"
+#include "plane.h"
 
 using namespace std;
 

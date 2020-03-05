@@ -1,4 +1,6 @@
-
+#include <iostream>
+#include <fstream>
+#include <string>
 
 /*
 *Funcao que, dada uma string e um ficheiro, escreve a string no ficheiro

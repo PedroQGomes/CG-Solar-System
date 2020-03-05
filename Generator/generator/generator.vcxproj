@@ -151,11 +151,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="box.cpp" />
+    <ClCompile Include="cone.cpp" />
     <ClCompile Include="generator.cpp" />
     <ClCompile Include="plane.cpp" />
     <ClCompile Include="write.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="box.h" />
+    <ClInclude Include="cone.h" />
     <ClInclude Include="plane.h" />
     <ClInclude Include="write.h" />
   </ItemGroup>

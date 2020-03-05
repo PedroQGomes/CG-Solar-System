@@ -1,6 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <string>
+#include "write.h"
 
 int writeToF(char * text, std::ofstream& file) {
 	if (!file.good()) {
