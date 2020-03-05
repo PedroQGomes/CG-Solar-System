@@ -10,7 +10,7 @@ model parseModel(std::string file) {
 	vertex v;
 
 	//std::ofstream f("plano.txt");
-	std::ifstream f("../../Generated/box.xml");
+	std::ifstream f("../../Generated/plano1.xml");
 
 	if(f.fail()) printf("O ficheiro nao existe.\n");
 
