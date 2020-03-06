@@ -126,19 +126,6 @@ int main(int argc, char **argv) {
         toDraw = parseModel(real_path);
     }
 
-    /*
-	if (argc < 2) {
-	    printf("aqui");
-	    toDraw = parseModel(path);
-	} else {
-        toDraw = parseModel(argv[1]);
-    }*/
-	//toDraw = parseModel(argv[argc]);
-	//printf("%s", path);
-
-
-	
-	//argc--;
 
 	glMain(0, argv);
 

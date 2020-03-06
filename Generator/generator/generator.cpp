@@ -8,7 +8,7 @@
 #include "sphere.h"
 
 //Path relativo para a diretoria onde os ficheiros s�o gerados
-std::string path = "../../Generated/";
+std::string path = "../Generated/";
 
 //Numero m�nimo de argumentos necess�rios ()
 const int MIN_ARGS = 4;
