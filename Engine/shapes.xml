@@ -1,5 +1,7 @@
 <?xml version = "1.0" encoding ="UTF-8" ?>
 <scene>
-<model file="teste.3d" />
-<model file="plane.3d" />
+<model file="box.txt" />
+<model file="cone.txt" />
+<model file="plano.txt" />
+<model file="sphere.txt" />
 </scene>

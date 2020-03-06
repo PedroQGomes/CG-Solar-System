@@ -14,7 +14,7 @@
 
 
 //std::string path = "../../../Generated Files/";
-std::string path = "../../Generated/box.txt";
+std::string path = "../Generated/";
 model toDraw;
 
 void changeSize(int w, int h) {
@@ -114,16 +114,29 @@ int glMain(int argc, char**argv) {
 int main(int argc, char **argv) {
 
     std::vector<std::string> filePathsOfShapes = parseXML("shapes.xml");
+    for(int i = 0; i< filePathsOfShapes.size();i++){
+        printf("%s\n",filePathsOfShapes[i].c_str());
+
+    }
+
+    std::string real_path;
+
+    for(int i = 0; i< filePathsOfShapes.size();i++) {
+        real_path = path + filePathsOfShapes[i];
+        toDraw = parseModel(real_path);
+    }
+
+    /*
 	if (argc < 2) {
 	    printf("aqui");
 	    toDraw = parseModel(path);
 	} else {
         toDraw = parseModel(argv[1]);
-    }
+    }*/
 	//toDraw = parseModel(argv[argc]);
 	//printf("%s", path);
 
-	
+
 	
 	//argc--;
 

@@ -12,7 +12,7 @@ vector<string> parseXML(std::string path) {
     vector<string> tmp;
     printf("%s\n",path.c_str());
     XMLDocument doc;
-    XMLError xmlError = doc.LoadFile(path);
+    XMLError xmlError = doc.LoadFile(path.c_str());
     if(xmlError != XML_SUCCESS) {
         cout << "error" << endl;
         return tmp;
