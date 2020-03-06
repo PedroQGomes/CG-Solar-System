@@ -113,7 +113,7 @@ int glMain(int argc, char**argv) {
 
 int main(int argc, char **argv) {
 
-    std::vector<std::string> filePathsOfShapes = parseXML("teste.xml");
+    std::vector<std::string> filePathsOfShapes = parseXML("shapes.xml");
 	if (argc < 2) {
 	    printf("aqui");
 	    toDraw = parseModel(path);
