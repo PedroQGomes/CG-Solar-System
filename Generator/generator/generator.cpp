@@ -5,6 +5,7 @@
 #include "plane.h"
 #include "box.h"
 #include "cone.h"
+#include "sphere.h"
 
 //Path relativo para a diretoria onde os ficheiros s�o gerados
 std::string path = "../../Generated/";
@@ -53,16 +54,22 @@ int main(int argc, char** argv)
         box(x,y,z,s,real_path2);
 	}
 	else if(type.compare("cone") == 0){
+	    // exmplo cone 2 3 20 20 cone.xml
 		printf("It's a cone!\n");
 		float radius = std::stof(argv[2]);
 		float height = std::stof(argv[3]);
 		int slices = std::stof(argv[4]);
 		int stacks = std::stof(argv[5]);
 		std::string real_path = path + argv[6];
-		//cone(radius, height, slices, stacks, real_path);
+		cone(radius, height, slices, stacks, real_path);
 	}
 	else if (type.compare("sphere") == 0) {
 		printf("It's a sphere!\n");
+        float radius = std::stof(argv[2]);
+        int slices = std::stof(argv[3]);
+        int stacks = std::stof(argv[4]);
+        std::string real_path = path + argv[5];
+        sphere(radius,slices,stacks,real_path);
 	}
 	else printf("It's..... nothing.\n");
     

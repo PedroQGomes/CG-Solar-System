@@ -12,7 +12,7 @@
 #endif
 
 //std::string path = "../../../Generated Files/";
-std::string path = "../../Generated/box2.xml";
+std::string path = "../../Generated/box.txt";
 model toDraw;
 
 void changeSize(int w, int h) {

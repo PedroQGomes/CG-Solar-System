@@ -39,8 +39,8 @@ int coneUpperBody(float radius, float height, int slices, int stacks, std::strin
 	std::ofstream f;
 	f.open(file);
 	float x1, x2, z1, z2, h1, h2;
-	float angleH = (2 * PI) / slices; //Ângulo horizontal entre a origem e o ponto
-	//float angleV = PI / (2*stacks); //Ângulo vertical entre a origem e o ponto
+	float angleH = (2 * PI) / slices; //angulo horizontal entre a origem e o ponto
+	//float angleV = PI / (2*stacks); //ï¿½ngulo vertical entre a origem e o ponto
 	float stackHeight = height / stacks;
 
 	for (float i = 0; i < stacks; i++) {
