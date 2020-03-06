@@ -49,9 +49,16 @@ int main(int argc, char** argv)
 		float x = std::stof(argv[2]);
         float y = std::stof(argv[3]);
         float z = std::stof(argv[4]);
-        float s = std::stof(argv[5]);
-        std::string real_path2 = path + argv[6];
-        box(x,y,z,s,real_path2);
+		float s;
+		std::string real_path;
+		if (argc == 7) {
+			s = std::stof(argv[5]);
+			real_path = path + argv[6];
+		}else {
+			float s = 1;
+			std::string real_path = path + argv[5];
+		}
+        box(x,y,z,s,real_path);
 	}
 	else if(type.compare("cone") == 0){
 		printf("It's a cone!\n");
