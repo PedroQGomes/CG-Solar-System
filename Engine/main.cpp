@@ -2,21 +2,22 @@
 #include "parser.h"
 #include "model.h"
 #include "vertex.h"
+#include "xmlParser.h"
 
+#include <vector>
 #include <math.h>
-
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
 #include <GL/glut.h>
 #endif
 
+
 //std::string path = "../../../Generated Files/";
 std::string path = "../../Generated/box2.xml";
 model toDraw;
 
 void changeSize(int w, int h) {
-
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window with zero width).
 	if(h == 0)
@@ -112,7 +113,7 @@ int glMain(int argc, char**argv) {
 
 int main(int argc, char **argv) {
 
-
+    std::vector<std::string> filePathsOfShapes = parseXML("teste.xml");
 	if (argc < 2) {
 	    printf("aqui");
 	    toDraw = parseModel(path);
