@@ -1,3 +1,4 @@
+#include <cmath>
 #include "cone.h"
 
 int cone(float radius, float height, int slices, int stacks, std::string file) {

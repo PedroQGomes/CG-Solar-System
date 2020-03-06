@@ -64,11 +64,6 @@ int main(int argc, char** argv)
 		cone(radius, height, slices, stacks, real_path);
 	}
 	else if (type.compare("sphere") == 0) {
-		float radius = std::stof(argv[2]);
-		float slices = std::stof(argv[3]);
-		float stacks = std::stof(argv[4]);
-		std::string real_path = path + argv[5];
-		sphere(radius,slices,stacks,real_path);
 		printf("It's a sphere!\n");
         float radius = std::stof(argv[2]);
         int slices = std::stof(argv[3]);

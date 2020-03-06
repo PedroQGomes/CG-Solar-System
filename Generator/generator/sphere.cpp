@@ -1,4 +1,5 @@
 #include "sphere.h"
+#include <cmath>
 
 int sphere(float radius, int slices, int stacks, std::string file) {
 

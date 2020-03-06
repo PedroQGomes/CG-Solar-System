@@ -2,6 +2,7 @@
 
 #include "write.h"
 #include "common.h"
+#include "cone.h"
 
 
 
