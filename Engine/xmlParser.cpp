@@ -1,6 +1,4 @@
-//
-// Created by José Santos on 06/03/2020.
-//
+
 
 #include <string>
 #include <iostream>
