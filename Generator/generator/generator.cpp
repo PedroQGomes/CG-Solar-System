@@ -5,6 +5,7 @@
 #include "plane.h"
 #include "box.h"
 #include "cone.h"
+#include "sphere.h"
 
 //Path relativo para a diretoria onde os ficheiros s�o gerados
 std::string path = "../../Generated/";
@@ -59,9 +60,14 @@ int main(int argc, char** argv)
 		int slices = std::stof(argv[4]);
 		int stacks = std::stof(argv[5]);
 		std::string real_path = path + argv[6];
-		//cone(radius, height, slices, stacks, real_path);
+		cone(radius, height, slices, stacks, real_path);
 	}
 	else if (type.compare("sphere") == 0) {
+		float radius = std::stof(argv[2]);
+		float slices = std::stof(argv[3]);
+		float stacks = std::stof(argv[4]);
+		std::string real_path = path + argv[5];
+		sphere(radius,slices,stacks,real_path);
 		printf("It's a sphere!\n");
 	}
 	else printf("It's..... nothing.\n");

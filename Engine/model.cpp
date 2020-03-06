@@ -32,10 +32,14 @@ void drawModel(model m) {
 		v3.x = m.vertexes.at(i).x;
 		v3.y = m.vertexes.at(i).y;
 		v3.z = m.vertexes.at(i).z;
+		
 
 		glBegin(GL_POLYGON);
+		glColor3f(1.0, 0.0, 0.0);
 		glVertex3f(v1.x, v1.y, v1.z);
+		glColor3f(0.0, 1.0, 0.0);
 		glVertex3f(v2.x, v2.y, v2.z);
+		glColor3f(0.0, 0.0, 1.0);
 		glVertex3f(v3.x, v3.y, v3.z);
 		glEnd();
 	}
