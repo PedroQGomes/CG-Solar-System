@@ -13,7 +13,7 @@
 using namespace std;
 
 
-int box(float x,float y, float z, std::string file) {
+int box(float x,float y, float z, float slices, std::string file) {
 
     std::ofstream f;
     f.open(file);
@@ -85,6 +85,28 @@ int box(float x,float y, float z, std::string file) {
     writeVertexToF(x1, 0,-z1, f);
     writeVertexToF(x1, 0, z1, f);
 
+    //slices
+    if(slices > 1){
+            float aux = x /slices;
+            float count = 1;
+            float tmpx1 = x1 -aux;
+            while (count < slices){
+                writeVertexToF(tmpx1, 0.0,z1, f);
+                writeVertexToF(tmpx1, 0.0,-z1, f);
+                writeVertexToF(tmpx1, y, z1, f);
+
+
+                writeVertexToF(tmpx1, 0.0,-z1, f);
+                writeVertexToF(tmpx1, y,-z1, f);
+                writeVertexToF(tmpx1, y, z1, f);
+
+                tmpx1 -= aux;
+                count++;
+            }
+
+
+
+    }
 
     return 1;
 }
