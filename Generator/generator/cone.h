@@ -1,13 +1,7 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <cmath>
-#include "write.h"
 
-const double PI = 3.14159265358979323846;
+#include "write.h"
+#include "common.h"
 
 int cone(float radius, float height, int slices, int stacks, std::string file);
 

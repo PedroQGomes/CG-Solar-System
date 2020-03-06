@@ -155,12 +155,15 @@
     <ClCompile Include="cone.cpp" />
     <ClCompile Include="generator.cpp" />
     <ClCompile Include="plane.cpp" />
+    <ClCompile Include="sphere.cpp" />
     <ClCompile Include="write.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="box.h" />
+    <ClInclude Include="common.h" />
     <ClInclude Include="cone.h" />
     <ClInclude Include="plane.h" />
+    <ClInclude Include="sphere.h" />
     <ClInclude Include="write.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
