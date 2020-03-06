@@ -56,13 +56,13 @@ int coneUpperBody(float radius, float height, int slices, int stacks, std::strin
 			x2 = radius * cos(angleH * (j + 1));
 			z2 = radius * sin(angleH * (j + 1));
 
-			writeVertexToF(x1, stackHeight * i,		z1, f);
-			writeVertexToF(x1*h1, stackHeight * (i+1), z1*h1, f);
-			writeVertexToF(x2, stackHeight * i,		z2, f);
+			writeVertexToF(x1 * h1, stackHeight * i,	z1 * h1, f);
+			writeVertexToF(x1 * h2, stackHeight * (i+1), z1 * h2, f);
+			writeVertexToF(x2 * h1, stackHeight * i,	z2 * h1, f);
 
-			writeVertexToF(x1 * h1, stackHeight * (i+1), z1 * h1, f);
+			writeVertexToF(x1 * h2, stackHeight * (i+1), z1 * h2, f);
 			writeVertexToF(x2 * h2, stackHeight * (i+1), z2 * h2, f);
-			writeVertexToF(x2, stackHeight * i, z2, f);
+			writeVertexToF(x2 * h1, stackHeight * i, z2 * h1, f);
 		}
 	}
 
