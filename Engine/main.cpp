@@ -126,7 +126,6 @@ int main(int argc, char **argv) {
         toDraw = parseModel(real_path);
     }
 
-
 	glMain(0, argv);
 
 	return 1;

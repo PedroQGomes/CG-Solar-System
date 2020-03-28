@@ -316,12 +316,16 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\main.cpp" />
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\model.cpp" />
     <ClCompile Include="operation3f.cpp" />
+    <ClCompile Include="rotation.cpp" />
+    <ClCompile Include="scale.cpp" />
     <ClCompile Include="translation.cpp" />
     <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\parser.h" />
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\parser.cpp" />
     <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.h" />
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.cpp" />
     <ClInclude Include="operation3f.h" />
+    <ClInclude Include="rotation.h" />
+    <ClInclude Include="scale.h" />
     <ClInclude Include="translation.h" />
   </ItemGroup>
   <ItemGroup>

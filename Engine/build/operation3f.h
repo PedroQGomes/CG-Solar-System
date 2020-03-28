@@ -1,5 +1,5 @@
 #pragma once
-
+#include <stdlib.h>
 
 typedef struct operation3f {
 	float x;
@@ -7,6 +7,7 @@ typedef struct operation3f {
 	float z;
 } * Operation3f;
 
+Operation3f newOperation3f();
 
 void setX(Operation3f o, float x);
 
