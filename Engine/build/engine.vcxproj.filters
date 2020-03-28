@@ -13,6 +13,8 @@
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="translation.cpp" />
+    <ClCompile Include="operation3f.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\parser.h">
@@ -21,6 +23,8 @@
     <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="operation3f.h" />
+    <ClInclude Include="translation.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\CMakeLists.txt" />
