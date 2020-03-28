@@ -13,10 +13,22 @@
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="translation.cpp" />
-    <ClCompile Include="operation3f.cpp" />
-    <ClCompile Include="rotation.cpp" />
-    <ClCompile Include="scale.cpp" />
+    <ClCompile Include="..\operation3f.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\rotation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\scale.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\translation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xmlParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\parser.h">
@@ -25,10 +37,20 @@
     <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="operation3f.h" />
-    <ClInclude Include="translation.h" />
-    <ClInclude Include="scale.h" />
-    <ClInclude Include="rotation.h" />
+    <ClInclude Include="..\operation3f.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\rotation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scale.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\translation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xmlParser.h" />
+    <ClInclude Include="..\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\CMakeLists.txt" />

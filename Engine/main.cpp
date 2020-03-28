@@ -3,6 +3,10 @@
 #include "model.h"
 #include "vertex.h"
 #include "xmlParser.h"
+#include "scale.h"
+#include "rotation.h"
+#include "translation.h"
+#include "operation3f.h"
 
 #include <vector>
 #include <math.h>
@@ -112,20 +116,19 @@ int glMain(int argc, char**argv) {
 
 
 int main(int argc, char **argv) {
-
+	
     std::vector<std::string> filePathsOfShapes = parseXML("shapes.xml");
-    for(int i = 0; i< filePathsOfShapes.size();i++){
+    for(int i = 0; i < filePathsOfShapes.size(); i++){
         printf("%s\n",filePathsOfShapes[i].c_str());
-
     }
-
+	
     std::string real_path;
-
-    for(int i = 0; i< filePathsOfShapes.size();i++) {
+	
+    for(int i = 0; i < filePathsOfShapes.size();i++) {
         real_path = path + filePathsOfShapes[i];
         toDraw = parseModel(real_path);
     }
-
+	
 	glMain(0, argv);
 
 	return 1;
