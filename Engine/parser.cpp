@@ -8,8 +8,11 @@ model parseModel(std::string file) {
 	model m;
 	float xF, yF, zF;
 	vertex v;
+	std::string real_path;
+	real_path = "../../Generated/" + file;
 
-	std::ifstream f(file);
+	std::ifstream f(real_path);
+	  
 
 	if(f.fail()) printf("O ficheiro nao existe.\n");
 
@@ -19,6 +22,6 @@ model parseModel(std::string file) {
 		v.z = zF;
 		m.vertexes.push_back(v);
 	}
-
+	printf("finished parsing\n");
 	return m;
 	}

@@ -16,7 +16,11 @@ using namespace std;
 void parseModels(XMLNode* models,GroupModel groupModel) {
     XMLElement* e = models->FirstChildElement("model");
     while(e != nullptr) {
-        addModel(groupModel,parseModel(e->Attribute("file")));
+        //addModel(groupModel,parseModel(e->Attribute("file")));
+        cout << e->Attribute("file") << endl;
+
+
+
         e = e->NextSiblingElement("model");
     }
 }
@@ -62,7 +66,7 @@ void parseGroups(XMLNode* group,GroupModel groupModel) {
             parseRotation(g,groupModel);
         } else if(strcmp(type,"group") == 0) {
             GroupModel tmp = newGroupModel();
-            addGroup(groupModel,tmp);
+            //addGroup(groupModel,tmp);
             parseGroups(g,tmp);
         }
 

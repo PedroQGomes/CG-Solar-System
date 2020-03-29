@@ -6,7 +6,7 @@
         <group>
             <scale X="6.96" Y="6.96" Z="6.96"/>
             <models>
-                <model file="sphere.txt"/>
+                <model file="sphere.3d"/>
             </models>
         </group>
 
