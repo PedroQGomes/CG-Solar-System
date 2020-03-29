@@ -6,6 +6,7 @@
 #include "box.h"
 #include "cone.h"
 #include "sphere.h"
+#include "circle.h"
 
 //Path relativo para a diretoria onde os ficheiros s�o gerados
 std::string path = "../Generated/";
