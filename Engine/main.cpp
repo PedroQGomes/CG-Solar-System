@@ -117,7 +117,7 @@ int glMain(int argc, char**argv) {
 
 int main(int argc, char **argv) {
 	
-    std::vector<std::string> filePathsOfShapes = parseXML("shapes.xml");
+   /* std::vector<std::string> filePathsOfShapes = parseXML("shapes.xml");
     for(int i = 0; i < filePathsOfShapes.size(); i++){
         printf("%s\n",filePathsOfShapes[i].c_str());
     }
@@ -127,9 +127,11 @@ int main(int argc, char **argv) {
     for(int i = 0; i < filePathsOfShapes.size();i++) {
         real_path = path + filePathsOfShapes[i];
         toDraw = parseModel(real_path);
-    }
-	
-	glMain(0, argv);
+    } */
+
+    GroupModel tmp = parseXML("solarSystem.xml");
+
+	//glMain(0, argv);
 
 	return 1;
 }
