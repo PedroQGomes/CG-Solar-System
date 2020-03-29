@@ -31,6 +31,20 @@ float alfa = 0.0f, beta = 0.5f, radius = 100.0f;
 float camX=5.0f, camY=5.0f, camZ=5.0f;
 int objectCount;
 
+int moving;
+float startx;
+float starty;
+
+float alfa = 0.0f, beta = 0.5f, radius = 100.0f;
+float camX, camY, camZ;
+
+void spherical2Cartesian() {
+
+	camX = radius * cos(beta) * sin(alfa);
+	camY = radius * sin(beta);
+	camZ = radius * cos(beta) * cos(alfa);
+}
+
 void changeSize(int w, int h) {
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window with zero width).
@@ -226,4 +240,44 @@ int main(int argc, char **argv) {
 
 	return 1;
 }
+
+
+void mouse(int button, int state, int x, int y)
+{
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		moving = 1;
+		startx = x;
+		starty = y;
+	}
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+		moving = 0;
+
+	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+	{
+		moving = 2;
+		starty = y;
+	}
+	if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)
+		moving = 0;
+}
+
+void motion(int x, int y)
+{
+	if (moving == 1)
+	{
+		alfa += (x - startx) / 50;
+		beta += (y - starty) / 50;
+		startx = x;
+		starty = y;
+	}
+	if (moving == 2)
+	{
+		radius += (y - starty);
+		starty = y;
+	}
+	spherical2Cartesian();
+	glutPostRedisplay();
+}
+
 

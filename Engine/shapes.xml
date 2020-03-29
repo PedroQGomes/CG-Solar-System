@@ -4,4 +4,5 @@
 <model file="cone.txt" />
 <model file="plano.txt" />
 <model file="sphere.txt" />
+<model file="circle.txt" />
 </scene>

@@ -6,6 +6,7 @@
 #include "box.h"
 #include "cone.h"
 #include "sphere.h"
+#include "circle.h"
 
 //Path relativo para a diretoria onde os ficheiros s�o gerados
 std::string path = "../Generated/";
@@ -20,6 +21,9 @@ const int PLANE_ARGS = 4;
 //N�mero de argumentos necess�rios para gerar uma caixa
 const int BOX_ARGS = 6;
 //box 2 2 2 box.txt
+
+//N�mero de argumentos necess�rios para gerar um circulo
+const int CIRCLE_ARGS = 4;
 
 //N�mero de argumentos necess�rios para gerar uma esfera
 const int SPHERE_ARGS = 6;
@@ -60,6 +64,14 @@ int main(int argc, char** argv)
 		}
         box(x,y,z,s,real_path);
 	}
+	else if(type.compare("circle") == 0){
+	    // exmplo circle 2 20 circle.xml
+		printf("It's a circle!\n");
+		float radius = std::stof(argv[2]);
+		int slices = std::stof(argv[3]);;
+		std::string real_path = path + argv[4];
+		circle(radius, slices, real_path);
+	}	
 	else if(type.compare("cone") == 0){
 	    // exmplo cone 2 3 20 20 cone.xml
 		printf("It's a cone!\n");
