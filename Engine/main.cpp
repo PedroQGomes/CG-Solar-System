@@ -3,6 +3,10 @@
 #include "model.h"
 #include "vertex.h"
 #include "xmlParser.h"
+#include "scale.h"
+#include "rotation.h"
+#include "translation.h"
+#include "operation3f.h"
 
 #include <vector>
 #include <math.h>
@@ -45,10 +49,10 @@ void changeSize(int w, int h) {
 
 void renderScene(void) {
 
-	// clear buffers
+// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// set the camera
+// set the camera
 	glLoadIdentity();
 	gluLookAt(5.0,5.0,5.0, 
 		      0.0,0.0,0.0,
@@ -74,7 +78,7 @@ void renderScene(void) {
 // put drawing instructions here
 	drawModel(toDraw[cur++]);
 
-	// End of frame
+// End of frame
 	glutSwapBuffers();
 }
 
@@ -117,13 +121,12 @@ int main(int argc, char **argv) {
     std::vector<std::string> filePathsOfShapes = parseXML("../shapes.xml");
     for(int i = 0; i< filePathsOfShapes.size();i++){
         printf("%s\n",filePathsOfShapes[i].c_str());
-
     }
 
 
     std::string real_path;
-
-    for(int i = 0; i< filePathsOfShapes.size();i++) {
+	
+    for(int i = 0; i < filePathsOfShapes.size();i++) {
         real_path = path + filePathsOfShapes[i];
         toDraw[cur] = parseModel(real_path);
     } 
