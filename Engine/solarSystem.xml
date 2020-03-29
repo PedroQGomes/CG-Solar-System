@@ -38,6 +38,12 @@
             <models>
                 <model file="sphere.3d"/>
             </models>
+
+            <!--Moon-->
+            <group>
+                <translate Y = "0.3"/>
+                <scale X="0.01" Y="0.01" Z="0.01"/>
+            </group>
         </group>
 
         <!--Mars-->

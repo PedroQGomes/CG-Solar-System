@@ -67,9 +67,9 @@ void renderScene(void) {
 
 // set the camera
 	glLoadIdentity();
-	gluLookAt(5.0,5.0,5.0, 
-		      0.0,0.0,0.0,
-			  0.0f,1.0f,0.0f);
+	gluLookAt(camX, camY, camZ,
+			0.0, 0.0, 0.0,
+			0.0f, 1.0f, 0.0f);
 
 // put the geometric transformations here
     glBegin(GL_LINES);
