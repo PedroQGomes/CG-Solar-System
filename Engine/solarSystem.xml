@@ -5,13 +5,9 @@
         <!--Sun-->
         <group>
             <scale X="6.96" Y="6.96" Z="6.96"/>
-<<<<<<< HEAD
-            <model file="sphere.txt"/>
-=======
             <models>
                 <model file="sphere.txt"/>
             </models>
->>>>>>> 9e52be4bf0c72b0cb57c43c5e9e4ea5721a37d26
         </group>
 
         <!--Mercury-->

@@ -326,6 +326,16 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\xmlParser.h" />
     <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\tinyxml2.h" />
     <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\tinyxml2.cpp" />
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\groupModel.cpp" />
+    <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\groupModel.h" />
+    <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\translation.h" />
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\translation.cpp" />
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\rotation.cpp" />
+    <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\rotation.h" />
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\scale.cpp" />
+    <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\scale.h" />
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\operation3f.cpp" />
+    <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\operation3f.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\build\ZERO_CHECK.vcxproj">

@@ -131,7 +131,7 @@ int main(int argc, char **argv) {
         toDraw = parseModel(real_path);
     } */
 
-    GroupModel tmp = parseXML("solarSystem.xml");
+    GroupModel tmp = parseXML("../solarSystem.xml");
 
 	glMain(0, argv);
 
