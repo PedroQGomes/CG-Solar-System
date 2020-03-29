@@ -14,8 +14,9 @@
 
 
 //std::string path = "../../../Generated Files/";
-std::string path = "../Generated/";
-model toDraw;
+std::string path = "../../Generated/";
+model toDraw[4];
+int cur = 0;
 
 void changeSize(int w, int h) {
 	// Prevent a divide by zero, when window is too short
@@ -71,7 +72,7 @@ void renderScene(void) {
     glEnd();
 
 // put drawing instructions here
-	drawModel(toDraw);
+	drawModel(toDraw[cur++]);
 
 	// End of frame
 	glutSwapBuffers();
@@ -113,20 +114,22 @@ int glMain(int argc, char**argv) {
 
 int main(int argc, char **argv) {
 
-    std::vector<std::string> filePathsOfShapes = parseXML("shapes.xml");
+    std::vector<std::string> filePathsOfShapes = parseXML("../shapes.xml");
     for(int i = 0; i< filePathsOfShapes.size();i++){
         printf("%s\n",filePathsOfShapes[i].c_str());
 
     }
 
+
     std::string real_path;
 
     for(int i = 0; i< filePathsOfShapes.size();i++) {
         real_path = path + filePathsOfShapes[i];
-        toDraw = parseModel(real_path);
-    }
+        toDraw[cur] = parseModel(real_path);
+    } 
 
-
+	
+	cur = 0;
 	glMain(0, argv);
 
 	return 1;
