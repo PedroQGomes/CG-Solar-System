@@ -19,7 +19,7 @@
 
 //std::string path = "../../../Generated Files/";
 std::string path = "../../Generated/";
-model toDraw[4];
+model toDraw;
 int cur = 0;
 
 void changeSize(int w, int h) {
@@ -76,7 +76,7 @@ void renderScene(void) {
     glEnd();
 
 // put drawing instructions here
-	drawModel(toDraw[cur++]);
+	drawModel(toDraw);
 
 // End of frame
 	glutSwapBuffers();
@@ -118,7 +118,7 @@ int glMain(int argc, char**argv) {
 
 int main(int argc, char **argv) {
 
-    std::vector<std::string> filePathsOfShapes = parseXML("../shapes.xml");
+    std::vector<std::string> filePathsOfShapes = parseXML("../solarSystem.xml");
     for(int i = 0; i< filePathsOfShapes.size();i++){
         printf("%s\n",filePathsOfShapes[i].c_str());
     }
@@ -128,7 +128,7 @@ int main(int argc, char **argv) {
 	
     for(int i = 0; i < filePathsOfShapes.size();i++) {
         real_path = path + filePathsOfShapes[i];
-        toDraw[cur] = parseModel(real_path);
+        toDraw = parseModel(real_path);
     } 
 
 	
@@ -137,3 +137,4 @@ int main(int argc, char **argv) {
 
 	return 1;
 }
+

@@ -26,6 +26,7 @@ vector<string> parseXML(std::string path) {
     for(XMLElement* element = root->FirstChildElement("model"); element != nullptr; element = element->NextSiblingElement("model")) {
         XMLAttribute * att = const_cast<XMLAttribute *>(element->FirstAttribute());
         tmp.push_back(att->Value());
+
     }
     return tmp;
 

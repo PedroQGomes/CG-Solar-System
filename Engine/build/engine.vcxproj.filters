@@ -1,66 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\main.cpp">
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\model.cpp">
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\parser.cpp">
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.cpp">
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\operation3f.cpp">
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\xmlParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\rotation.cpp">
+    <ClCompile Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\scale.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\translation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\xmlParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\parser.h">
+    <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.h">
+    <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operation3f.h">
+    <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\xmlParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\rotation.h">
+    <ClInclude Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\scale.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\translation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\xmlParser.h" />
-    <ClInclude Include="..\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\a84220\Desktop\CG_PRATICA\CG-19-20\Engine\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{0F89184A-64F1-3B56-BD1E-7978088AA75D}</UniqueIdentifier>
+      <UniqueIdentifier>{D9DC914B-C1CF-3CF0-AF6B-F877D4967CFC}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{6DBD1665-EFE7-3EF9-AD5C-410967B53CAD}</UniqueIdentifier>
+      <UniqueIdentifier>{11736B9D-BEE2-3F72-95D8-2F0556E5CB1E}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
