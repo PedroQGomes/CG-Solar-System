@@ -59,8 +59,8 @@ void parseGroups(XMLNode* group,GroupModel groupModel) {
         } else if(strcmp(type,"scale") == 0) {
             parseScale(g, groupModel);
         }else if(strcmp(type,"rotate") == 0) {
-            parseRotate(g,groupModel);
-        } else if(strcmp(type,"group") == 0) {
+            parseRotation(g,groupModel);
+        } else  if(strcmp(type,"group") == 0) {
             GroupModel tmp = newGroupModel();
             addGroup(groupModel,tmp);
             parseGroups(g,tmp);
