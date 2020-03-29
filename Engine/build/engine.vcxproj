@@ -313,24 +313,26 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\operation3f.cpp" />
-    <ClCompile Include="..\rotation.cpp" />
-    <ClCompile Include="..\scale.cpp" />
-    <ClCompile Include="..\tinyxml2.cpp" />
-    <ClCompile Include="..\translation.cpp" />
-    <ClCompile Include="..\xmlParser.cpp" />
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\main.cpp" />
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\model.cpp" />
-    <ClInclude Include="..\operation3f.h" />
-    <ClInclude Include="..\rotation.h" />
-    <ClInclude Include="..\scale.h" />
-    <ClInclude Include="..\tinyxml2.h" />
-    <ClInclude Include="..\translation.h" />
-    <ClInclude Include="..\xmlParser.h" />
     <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\parser.h" />
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\parser.cpp" />
     <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.h" />
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.cpp" />
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\xmlParser.cpp" />
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\xmlParser.h" />
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\tinyxml2.h" />
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\tinyxml2.cpp" />
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\groupModel.cpp" />
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\groupModel.h" />
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\translation.h" />
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\translation.cpp" />
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\rotation.cpp" />
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\rotation.h" />
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\scale.cpp" />
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\scale.h" />
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\operation3f.cpp" />
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\operation3f.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\build\ZERO_CHECK.vcxproj">

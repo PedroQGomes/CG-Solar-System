@@ -13,22 +13,27 @@
     <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\operation3f.cpp">
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\xmlParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\rotation.cpp">
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\scale.cpp">
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\groupModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\translation.cpp">
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\translation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\xmlParser.cpp">
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\rotation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\tinyxml2.cpp" />
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\scale.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\operation3f.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\parser.h">
@@ -37,20 +42,27 @@
     <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\operation3f.h">
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\xmlParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\rotation.h">
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\scale.h">
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\groupModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\translation.h">
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\translation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\xmlParser.h" />
-    <ClInclude Include="..\tinyxml2.h" />
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\rotation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\scale.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\operation3f.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\Joao\Desktop\Stuff\Uni\CG\CG-19-20\Engine\CMakeLists.txt" />
