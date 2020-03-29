@@ -15,8 +15,8 @@ struct _groupModel {
     Rotation rotation;
     Translation translation;
     Scale scale;
-    std::vector<model> models;
-    std::vector<_groupModel*> groups;
+    std::vector<model> *models;
+    std::vector<_groupModel*> *groups;
 };
 
 typedef struct _groupModel* GroupModel;

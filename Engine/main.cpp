@@ -21,6 +21,15 @@
 std::string path = "../../Generated/";
 model toDraw;
 int cur = 0;
+GroupModel tmp;
+int count = 0;
+std::vector<GroupModel>::iterator it;
+
+const float PI = 3.14159265358979323846;
+float angle;
+float alfa = 0.0f, beta = 0.5f, radius = 100.0f;
+float camX=5.0f, camY=5.0f, camZ=5.0f;
+int objectCount;
 
 void changeSize(int w, int h) {
 	// Prevent a divide by zero, when window is too short
@@ -44,6 +53,29 @@ void changeSize(int w, int h) {
 
 	// return to the model view matrix mode
 	glMatrixMode(GL_MODELVIEW);
+	
+	
+
+}
+
+
+void mydraw() {
+	glPushMatrix();
+	long tmpx = translationGetX((*it)->translation);
+	long tmpy = translationGetY((*it)->translation);
+	long tmpz = translationGetZ((*it)->translation);
+
+	long stmpx = scaleGetX((*it)->scale);
+	long stmpy = scaleGetY((*it)->scale);
+	long stmpz = scaleGetZ((*it)->scale);
+
+
+	glTranslatef(count, 0, 0);
+	glScalef(0.1, 0.1, 0.1);
+	drawModel((*it)->models->front());
+	glPopMatrix();
+
+	count++;
 }
 
 
@@ -54,7 +86,9 @@ void renderScene(void) {
 
 // set the camera
 	glLoadIdentity();
-	gluLookAt(5.0,5.0,5.0, 
+	//glMatrixMode(GL_PROJECTION);
+	
+	gluLookAt(camX,camY,camZ, 
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
 
@@ -74,11 +108,15 @@ void renderScene(void) {
     glVertex3f(0.0f, 0.0f, 100.0f);
 
     glEnd();
-
 // put drawing instructions here
-	drawModel(toDraw);
 
+	for (int i = 0; i < objectCount; i++) {
+		mydraw();
+		it++;
+
+	}
 // End of frame
+	glutPostRedisplay();
 	glutSwapBuffers();
 }
 
@@ -86,13 +124,58 @@ void renderScene(void) {
 
 // write function to process keyboard events
 
+void processKeys(unsigned char c, int xx, int yy) {
+
+// put code to process regular keys in here
+
+}
+void spherical2Cartesian() {
+
+	camX = radius * cos(beta) * sin(alfa);
+	camY = radius * sin(beta);
+	camZ = radius * cos(beta) * cos(alfa);
+}
+
+void processSpecialKeys(int key, int xx, int yy) {
+
+	switch (key) {
+
+	case GLUT_KEY_RIGHT:
+		alfa -= 0.1; break;
+
+	case GLUT_KEY_LEFT:
+		alfa += 0.1; break;
+
+	case GLUT_KEY_UP:
+		beta += 0.1f;
+		if (beta > 1.5f)
+			beta = 1.5f;
+		break;
+
+	case GLUT_KEY_DOWN:
+		beta -= 0.1f;
+		if (beta < -1.5f)
+			beta = -1.5f;
+		break;
+
+	case GLUT_KEY_PAGE_DOWN: radius -= 1.0f;
+		if (radius < 1.0f)
+			radius = 1.0f;
+		break;
+
+	case GLUT_KEY_PAGE_UP: radius += 1.0f; break;
+	}
+	spherical2Cartesian();
+	glutPostRedisplay();
+
+}
 
 int glMain(int argc, char**argv) {
 	// init GLUT and the window
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100, 100);
-	glutInitWindowSize(800, 800);
+	glutInitWindowSize(1400, 1000);
 	glutCreateWindow("Engine");
 
 	// Required callback registry 
@@ -101,14 +184,15 @@ int glMain(int argc, char**argv) {
 
 
 	// put here the registration of the keyboard callbacks
-
+	//glutKeyboardFunc(processKeys);
+	//glutSpecialFunc(processSpecialKeys);
 	
 
 	//  OpenGL settings
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);	
-
-	// enter GLUT's main cycle
+	//spherical2Cartesian();
+	// enter GLUT's main cycle <<>
 	glutMainLoop();
 
 	return 1;
@@ -116,24 +200,29 @@ int glMain(int argc, char**argv) {
 
 
 
+
+
+
+
 int main(int argc, char **argv) {
 	
-   /* std::vector<std::string> filePathsOfShapes = parseXML("shapes.xml");
-    for(int i = 0; i < filePathsOfShapes.size(); i++){
-        printf("%s\n",filePathsOfShapes[i].c_str());
-    }
+   
 
-
-    std::string real_path;
+    tmp = parseXML("../solarSystem.xml");
+	std::vector<GroupModel> aux = getGroups(tmp);
 	
-    for(int i = 0; i < filePathsOfShapes.size();i++) {
-        real_path = path + filePathsOfShapes[i];
-        toDraw = parseModel(real_path);
-    } */
+	it = aux.begin();
+	objectCount = aux.size();
+	
+	printf("aqui\n");
+		std::cout << translationGetX((*it)->translation) << std::endl;
+		std::cout << translationGetY((*it)->translation) << std::endl;
+		std::cout << translationGetZ((*it)->translation) << std::endl;
 
-    GroupModel tmp = parseXML("../solarSystem.xml");
+	
 
 	glMain(0, argv);
+
 
 	return 1;
 }

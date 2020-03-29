@@ -5,7 +5,12 @@
 #include "groupModel.h"
 
 GroupModel newGroupModel() {
-    GroupModel r = (GroupModel)(malloc(sizeof(_groupModel)));
+    GroupModel r = (GroupModel)(malloc(sizeof(struct _groupModel)));
+    r->scale = nullptr;
+    r->groups = new std::vector<GroupModel>();
+    r->models = new std::vector<model>();
+    r->rotation = nullptr;
+    r->translation = nullptr;
     return r;
 }
 
@@ -27,33 +32,28 @@ void setScale(GroupModel groupModel, Scale r) {
         groupModel->scale = r;
 }
 
-void setGroup(GroupModel groupModel, std::vector<GroupModel> vector) {
-    if(groupModel)
-        groupModel->groups = std::vector<GroupModel>(vector);
-}
-
-void setModels(GroupModel groupModel, std::vector<model> modelvector) {
-    if (groupModel)
-        groupModel->models = std::vector<model>(modelvector);
-}
 
 void addModel(GroupModel groupModel,model model) {
-    if(groupModel)
-        groupModel->models.push_back(model);
+    if(groupModel) {
+        groupModel->models->push_back(model);
+    }
+
 }
 
 void addGroup(GroupModel groupModel,GroupModel group2) {
-    if(groupModel)
-        groupModel->groups.push_back(group2);
+    if(groupModel) {
+        groupModel->groups->push_back(group2);
+    }
 }
-
 
 std::vector<_groupModel*> getGroups(GroupModel groupModel) {
-    if(groupModel)
-    return groupModel->groups;
+
+    if (groupModel) {
+    
+        std::vector<GroupModel> tmp = *groupModel->groups->front()->groups;
+        return tmp;
+    }
+
 }
 
-std::vector<model> getModels(GroupModel groupModel) {
-    if(groupModel)
-        return groupModel->models;
-}
+
