@@ -23,7 +23,7 @@ const int BOX_ARGS = 6;
 //box 2 2 2 box.txt
 
 //N�mero de argumentos necess�rios para gerar um circulo
-const int CIRCLE_ARGS = 2;
+const int CIRCLE_ARGS = 4;
 
 //N�mero de argumentos necess�rios para gerar uma esfera
 const int SPHERE_ARGS = 6;
