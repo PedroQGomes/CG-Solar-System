@@ -22,7 +22,6 @@ std::string path = "../../Generated/";
 model toDraw;
 int cur = 0;
 GroupModel tmp;
-int count = 0;
 std::vector<GroupModel>::iterator it;
 
 const float PI = 3.14159265358979323846;
@@ -35,15 +34,7 @@ int moving;
 float startx;
 float starty;
 
-float alfa = 0.0f, beta = 0.5f, radius = 100.0f;
-float camX, camY, camZ;
 
-void spherical2Cartesian() {
-
-	camX = radius * cos(beta) * sin(alfa);
-	camY = radius * sin(beta);
-	camZ = radius * cos(beta) * cos(alfa);
-}
 
 void changeSize(int w, int h) {
 	// Prevent a divide by zero, when window is too short
@@ -78,18 +69,17 @@ void mydraw() {
 	long tmpx = translationGetX((*it)->translation);
 	long tmpy = translationGetY((*it)->translation);
 	long tmpz = translationGetZ((*it)->translation);
-
+	tmpx = tmpx / 10;
 	long stmpx = scaleGetX((*it)->scale);
 	long stmpy = scaleGetY((*it)->scale);
 	long stmpz = scaleGetZ((*it)->scale);
 
 
-	glTranslatef(count, 0, 0);
-	glScalef(0.1, 0.1, 0.1);
+	glTranslatef(tmpx, tmpy, tmpz);
+	glScalef(0.3, 0.3,0.3);
 	drawModel((*it)->models->front());
 	glPopMatrix();
 
-	count++;
 }
 
 
@@ -129,6 +119,12 @@ void renderScene(void) {
 		it++;
 
 	}
+	
+	for (int j = objectCount; j > 0 ; j--) {
+		it--;
+
+	}
+
 // End of frame
 	glutPostRedisplay();
 	glutSwapBuffers();
@@ -184,6 +180,45 @@ void processSpecialKeys(int key, int xx, int yy) {
 
 }
 
+
+void motion(int x, int y)
+{
+	if (moving == 1)
+	{
+		alfa += (x - startx) / 50;
+		beta += (y - starty) / 50;
+		startx = x;
+		starty = y;
+	}
+	if (moving == 2)
+	{
+		radius += (y - starty);
+		starty = y;
+	}
+	spherical2Cartesian();
+	glutPostRedisplay();
+}
+
+void mouse(int button, int state, int x, int y)
+{
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	{
+		moving = 1;
+		startx = x;
+		starty = y;
+	}
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+		moving = 0;
+
+	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+	{
+		moving = 2;
+		starty = y;
+	}
+	if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)
+		moving = 0;
+}
+
 int glMain(int argc, char**argv) {
 	// init GLUT and the window
 	glutInit(&argc, argv);
@@ -198,8 +233,10 @@ int glMain(int argc, char**argv) {
 
 
 	// put here the registration of the keyboard callbacks
-	//glutKeyboardFunc(processKeys);
-	//glutSpecialFunc(processSpecialKeys);
+	glutKeyboardFunc(processKeys);
+	glutSpecialFunc(processSpecialKeys);
+	glutMotionFunc(motion);
+	glutMouseFunc(mouse);
 	
 
 	//  OpenGL settings
@@ -227,13 +264,13 @@ int main(int argc, char **argv) {
 	
 	it = aux.begin();
 	objectCount = aux.size();
-	
-	printf("aqui\n");
+
+	printf("%d\n",aux.size());
+
 		std::cout << translationGetX((*it)->translation) << std::endl;
 		std::cout << translationGetY((*it)->translation) << std::endl;
 		std::cout << translationGetZ((*it)->translation) << std::endl;
 
-	
 
 	glMain(0, argv);
 
@@ -242,42 +279,5 @@ int main(int argc, char **argv) {
 }
 
 
-void mouse(int button, int state, int x, int y)
-{
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-	{
-		moving = 1;
-		startx = x;
-		starty = y;
-	}
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)
-		moving = 0;
-
-	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-	{
-		moving = 2;
-		starty = y;
-	}
-	if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)
-		moving = 0;
-}
-
-void motion(int x, int y)
-{
-	if (moving == 1)
-	{
-		alfa += (x - startx) / 50;
-		beta += (y - starty) / 50;
-		startx = x;
-		starty = y;
-	}
-	if (moving == 2)
-	{
-		radius += (y - starty);
-		starty = y;
-	}
-	spherical2Cartesian();
-	glutPostRedisplay();
-}
 
 
