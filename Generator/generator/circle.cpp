@@ -24,6 +24,6 @@ int circle(float radius, int slices, std::string file) {
 
 	f.close();
 
-
+	return 0;
 }
 

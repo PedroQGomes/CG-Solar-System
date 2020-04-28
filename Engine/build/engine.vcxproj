@@ -316,34 +316,38 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\main.cpp" />
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\model.cpp" />
-    <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\parser.h" />
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\parser.cpp" />
-    <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\vertex.h" />
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\vertex.cpp" />
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\xmlParser.cpp" />
-    <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\xmlParser.h" />
-    <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\tinyxml2.h" />
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\tinyxml2.cpp" />
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\groupModel.cpp" />
-    <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\groupModel.h" />
-    <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\translation.h" />
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\translation.cpp" />
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\rotation.cpp" />
-    <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\rotation.h" />
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\scale.cpp" />
-    <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\scale.h" />
-    <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\operation3f.cpp" />
-    <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\operation3f.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\build\ZERO_CHECK.vcxproj">
       <Project>{0068E6AF-1EDA-3336-B46D-A8FDF62C2B7D}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\groupModel.cpp" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\model.cpp" />
+    <ClCompile Include="..\operation3f.cpp" />
+    <ClCompile Include="..\parser.cpp" />
+    <ClCompile Include="..\rotation.cpp" />
+    <ClCompile Include="..\scale.cpp" />
+    <ClCompile Include="..\tinyxml2.cpp" />
+    <ClCompile Include="..\translation.cpp" />
+    <ClCompile Include="..\vertex.cpp" />
+    <ClCompile Include="..\xmlParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\groupModel.h" />
+    <ClInclude Include="..\headers.h" />
+    <ClInclude Include="..\model.h" />
+    <ClInclude Include="..\operation3f.h" />
+    <ClInclude Include="..\parser.h" />
+    <ClInclude Include="..\rotation.h" />
+    <ClInclude Include="..\scale.h" />
+    <ClInclude Include="..\tinyxml2.h" />
+    <ClInclude Include="..\translation.h" />
+    <ClInclude Include="..\vertex.h" />
+    <ClInclude Include="..\xmlParser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

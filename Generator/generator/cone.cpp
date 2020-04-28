@@ -32,7 +32,7 @@ int coneBottomCircle(float radius, int slices, std::string file) {
 
 	f.close();
 
-
+	return 0;
 }
 
 int coneUpperBody(float radius, float height, int slices, int stacks, std::string file){
