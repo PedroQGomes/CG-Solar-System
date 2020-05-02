@@ -23,7 +23,6 @@ model toDraw;
 int cur = 0;
 GroupModel tmp;
 std::vector<GroupModel>::iterator it;
-
 const float PI = 3.14159265358979323846;
 float angle;
 float alfa = 0.0f, beta = 0.5f, radius = 100.0f;
@@ -33,7 +32,6 @@ int objectCount;
 int moving;
 float startx;
 float starty;
-
 
 
 void changeSize(int w, int h) {
@@ -66,17 +64,16 @@ void changeSize(int w, int h) {
 
 void mydraw() {
 	glPushMatrix();
-	long tmpx = translationGetX((*it)->translation);
-	long tmpy = translationGetY((*it)->translation);
-	long tmpz = translationGetZ((*it)->translation);
-	tmpx = tmpx / 10;
-	long stmpx = scaleGetX((*it)->scale);
-	long stmpy = scaleGetY((*it)->scale);
-	long stmpz = scaleGetZ((*it)->scale);
+	float tmpx = translationGetX((*it)->translation);
+	float tmpy = translationGetY((*it)->translation);
+	float tmpz = translationGetZ((*it)->translation);
 
+	float stmpx = scaleGetX((*it)->scale);
+	float stmpy = scaleGetY((*it)->scale);
+	float stmpz = scaleGetZ((*it)->scale);
 
 	glTranslatef(tmpx, tmpy, tmpz);
-	glScalef(0.3, 0.3,0.3);
+	glScalef(stmpx, stmpy, stmpz);
 	drawModel((*it)->models->front());
 	glPopMatrix();
 
@@ -91,11 +88,10 @@ void renderScene(void) {
 // set the camera
 	glLoadIdentity();
 	//glMatrixMode(GL_PROJECTION);
-	
+	int time = glutGet(GLUT_ELAPSED_TIME);
 	gluLookAt(camX,camY,camZ, 
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
-
 // put the geometric transformations here
     glBegin(GL_LINES);
 // X axis in red
@@ -114,16 +110,7 @@ void renderScene(void) {
     glEnd();
 // put drawing instructions here
 
-	for (int i = 0; i < objectCount; i++) {
-		mydraw();
-		it++;
-
-	}
-	
-	for (int j = objectCount; j > 0 ; j--) {
-		it--;
-
-	}
+	drawGroupModel(it,objectCount,time);
 
 // End of frame
 	glutPostRedisplay();
@@ -258,19 +245,11 @@ int glMain(int argc, char**argv) {
 int main(int argc, char **argv) {
 	
    
-
     tmp = parseXML("../solarSystem.xml");
 	std::vector<GroupModel> aux = getGroups(tmp);
 	
 	it = aux.begin();
 	objectCount = aux.size();
-
-	printf("%d\n",aux.size());
-
-		std::cout << translationGetX((*it)->translation) << std::endl;
-		std::cout << translationGetY((*it)->translation) << std::endl;
-		std::cout << translationGetZ((*it)->translation) << std::endl;
-
 
 	glMain(0, argv);
 

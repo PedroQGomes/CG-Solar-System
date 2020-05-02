@@ -9,6 +9,7 @@
 #include "translation.h"
 #include "scale.h"
 #include "model.h"
+#include <GL/glut.h>
 
 
 struct _groupModel {
@@ -32,6 +33,7 @@ void setModels(GroupModel groupModel, std::vector<model> modelvector);
 std::vector<_groupModel*> getGroups(GroupModel groupModel);
 void addModel(GroupModel groupModel,model model);
 void addGroup(GroupModel groupModel,GroupModel group2);
+void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int time);
 
 
 #endif //CG_19_20_GROUPMODEL_H
