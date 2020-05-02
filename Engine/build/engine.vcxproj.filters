@@ -34,6 +34,7 @@
     <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\operation3f.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="catmul.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\parser.h">
@@ -63,6 +64,7 @@
     <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\operation3f.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="catmul.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\CMakeLists.txt" />

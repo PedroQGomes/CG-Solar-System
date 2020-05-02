@@ -318,6 +318,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\main.cpp" />
     <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\model.cpp" />
+    <ClCompile Include="catmul.cpp" />
     <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\parser.h" />
     <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\parser.cpp" />
     <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\vertex.h" />
@@ -336,6 +337,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\scale.h" />
     <ClCompile Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\operation3f.cpp" />
     <ClInclude Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\operation3f.h" />
+    <ClInclude Include="catmul.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\a84220\Desktop\2º semestre\CG\pratica\CG-19-20\Engine\build\ZERO_CHECK.vcxproj">
