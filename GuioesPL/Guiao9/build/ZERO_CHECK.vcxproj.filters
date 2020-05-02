@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\João\Desktop\Stuff\Uni\CG\CG-19-20\GuioesPL\Guiao9\build\CMakeFiles\52d0bab2f9537a038b948345e9c2e465\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{8CAE228A-E777-389B-911A-C60A4547B719}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -347,6 +347,32 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\groupModel.cpp" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\model.cpp" />
+    <ClCompile Include="..\operation3f.cpp" />
+    <ClCompile Include="..\parser.cpp" />
+    <ClCompile Include="..\rotation.cpp" />
+    <ClCompile Include="..\scale.cpp" />
+    <ClCompile Include="..\tinyxml2.cpp" />
+    <ClCompile Include="..\translation.cpp" />
+    <ClCompile Include="..\vertex.cpp" />
+    <ClCompile Include="..\xmlParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\groupModel.h" />
+    <ClInclude Include="..\headers.h" />
+    <ClInclude Include="..\model.h" />
+    <ClInclude Include="..\operation3f.h" />
+    <ClInclude Include="..\parser.h" />
+    <ClInclude Include="..\rotation.h" />
+    <ClInclude Include="..\scale.h" />
+    <ClInclude Include="..\tinyxml2.h" />
+    <ClInclude Include="..\translation.h" />
+    <ClInclude Include="..\vertex.h" />
+    <ClInclude Include="..\xmlParser.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

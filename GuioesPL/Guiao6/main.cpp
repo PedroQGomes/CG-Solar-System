@@ -16,6 +16,11 @@
 #include <GL/glut.h>
 #endif
 
+unsigned int t, tw, th;
+unsigned char *imageData;
+
+GLuint buffers[1];
+const int arraySize = 6 * (th) * tw;
 
 float camX = 00, camY = 30, camZ = 40;
 int startX, startY, tracking = 0;
@@ -46,11 +51,25 @@ void changeSize(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
+float h(int i, int j) {
 
+	float v = imageData[i * tw + j] * 30.0 / 255.0;
+
+	return v;
+}
 
 void drawTerrain() {
 
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     // colocar aqui o código de desnho do terreno usando VBOs com TRIANGLE_STRIPS
+	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+	glVertexPointer(3, GL_FLOAT, 0, 0);
+	
+	for (int i = 0; i < th - 1; i++) {
+		glDrawArrays(GL_TRIANGLE_STRIP, (tw) * 2 * i, (tw) * 2);
+	}
+
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 
@@ -68,7 +87,6 @@ void renderScene(void) {
 			  0.0f,1.0f,0.0f);
 
 	drawTerrain();
-
 	// just so that it renders something before the terrain is built
 	// to erase when the terrain is ready
 	glutWireTeapot(2.0);
@@ -156,11 +174,51 @@ void processMouseMotion(int xx, int yy) {
 void init() {
 
 // 	Load the height map "terreno.jpg"
+	ilGenImages(1, &t);
+	ilBindImage(t);
+	// terreno.jpg is the image containing our height map
+	ilLoadImage((ILstring)"terreno.jpg");
+	// convert the image to single channel per pixel
+	// with values ranging between 0 and 255
+	ilConvertImage(IL_LUMINANCE, IL_UNSIGNED_BYTE);
+	// important: check tw and th values
+	// both should be equal to 256
+	// if not there was an error loading the image
+	// most likely the image could not be found
+	tw = ilGetInteger(IL_IMAGE_WIDTH);
+	th = ilGetInteger(IL_IMAGE_HEIGHT);
+
+	// imageData is a LINEAR array with the pixel values
+	imageData = ilGetData();
+
+	glewInit();
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glGenBuffers(1, buffers);
 
 // 	Build the vertex arrays
+	float * vertexB = (float*) malloc(sizeof(float) * tw * th * 6);
+	int index = 0;
+
+	for (int i = 0; i < th-1;i++) {
+		for (int j = 0; j < tw; j++) {
+			vertexB[index++] = -((float)th - 1.0) / 2.0 + (float)j;
+			vertexB[index++] = h(i, j);
+			vertexB[index++] = -((float)tw - 1.0) / 2.0 + (float)i;
+
+
+			vertexB[index++] = -((float)th - 1.0) / 2.0 + (float)j;
+			vertexB[index++] = h(i + 1, j);
+			vertexB[index++] = -((float)tw - 1.0) / 2.0 + (float)i + 1.0;
+		}
+	}
+
+	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+	glBufferData(GL_ARRAY_BUFFER, arraySize * sizeof(float), vertexB, GL_STATIC_DRAW);
+	free(vertexB);
 
 // 	OpenGL settings
 	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_CULL_FACE);
 	//glEnable(GL_CULL_FACE);
 }
 
@@ -180,11 +238,14 @@ int main(int argc, char **argv) {
 	glutIdleFunc(renderScene);
 	glutReshapeFunc(changeSize);
 
+
+
 // Callback registration for keyboard processing
 	glutKeyboardFunc(processKeys);
 	glutMouseFunc(processMouseButtons);
 	glutMotionFunc(processMouseMotion);
 
+	ilInit();
 	init();	
 
 // enter GLUT's main cycle
