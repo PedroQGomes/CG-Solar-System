@@ -53,7 +53,7 @@
         <group>
             <!--Actual Distance: 1 AU-->
             <translate time = "24">
-            <point X="24" Y="0" Z="0"/>
+                <point X="24" Y="0" Z="0"/>
                 <point X="16.971" Y="0" Z="-16.971"/>
                 <point X="0" Y="0" Z="-24"/>
                 <point X="-16.971" Y="0" Z="-16.971"/>
@@ -131,7 +131,7 @@
             <scale X="1.78" Y="1.78" Z="1.78"/>
             <models>
                 <model file="sphere.3d"/>
-            </group>
+            </models>
         </group>
 
         <!--Uranus-->
@@ -156,7 +156,7 @@
         <!--Neputne-->
         <group>
             <!--Actual Distance: 30.02-->
-            <translate time= "5"/>
+            <translate time= "5">
                 <point X="574" Y="0" Z="0"/>
                 <point X="405.879" Y="0" Z="-405.879"/>
                 <point X="0" Y="0" Z="-574"/>
@@ -171,5 +171,6 @@
                 <model file="sphere.3d"/>
             </models>
         </group>
+        
     </group>
 </scene>
