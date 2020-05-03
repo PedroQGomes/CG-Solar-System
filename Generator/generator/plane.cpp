@@ -14,14 +14,14 @@ int plane(float size, std::string file) {
 
 	printf("Writting\n");
 	//10 Triangulo
-	writeVertexToF(-x, 0.0, z, f);
-	writeVertexToF( x, 0.0, z, f);
-	writeVertexToF( x, 0.0,-z, f);
+	writePointToF(-x, 0.0, z, f);
+	writePointToF( x, 0.0, z, f);
+	writePointToF( x, 0.0,-z, f);
 
 	//20 Triangulo
-	writeVertexToF( x, 0.0,-z, f);
-	writeVertexToF(-x, 0.0,-z, f);
-	writeVertexToF(-x, 0.0, z, f);
+	writePointToF( x, 0.0,-z, f);
+	writePointToF(-x, 0.0,-z, f);
+	writePointToF(-x, 0.0, z, f);
 
 	return 1;
 }

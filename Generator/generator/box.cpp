@@ -33,14 +33,14 @@ int box(float x,float y, float z, float slices, std::string file) {
 	//Face Frontal
 	for (int i = 0; i < slices; i++) {
 		for (int j = 0; j < slices; j++) {
-			writeVertexToF(x1, i*sY -y1 , z1 - (sZ*j), f);
-			writeVertexToF(x1, i*sY - y1, z1 - (sZ*(j+1)), f);
-			writeVertexToF(x1, (i + 1)*sY - y1, z1 - (sZ*(j + 1)), f);
+			writePointToF(x1, i*sY -y1 , z1 - (sZ*j), f);
+			writePointToF(x1, i*sY - y1, z1 - (sZ*(j+1)), f);
+			writePointToF(x1, (i + 1)*sY - y1, z1 - (sZ*(j + 1)), f);
 
 			
-			writeVertexToF(x1, (i + 1)*sY - y1, z1 - (sZ*(j + 1)), f);
-			writeVertexToF(x1, (i + 1)*sY - y1, z1 - (sZ*j), f);
-			writeVertexToF(x1, i*sY - y1, z1 - (sZ*j), f);
+			writePointToF(x1, (i + 1)*sY - y1, z1 - (sZ*(j + 1)), f);
+			writePointToF(x1, (i + 1)*sY - y1, z1 - (sZ*j), f);
+			writePointToF(x1, i*sY - y1, z1 - (sZ*j), f);
 		}
 	}
 	
@@ -48,13 +48,13 @@ int box(float x,float y, float z, float slices, std::string file) {
 	//Face Lateral Direita
 	for (int i = 0; i < slices; i++) {
 		for (int j = 0; j < slices; j++) {
-			writeVertexToF(x1 - sX * j, i*sY - y1, -z1, f);
-			writeVertexToF(x1 - sX * (j + 1), i*sY - y1, -z1, f);
-			writeVertexToF(x1 - sX * (j + 1), (i + 1)*sY - y1, -z1, f);
+			writePointToF(x1 - sX * j, i*sY - y1, -z1, f);
+			writePointToF(x1 - sX * (j + 1), i*sY - y1, -z1, f);
+			writePointToF(x1 - sX * (j + 1), (i + 1)*sY - y1, -z1, f);
 
-			writeVertexToF(x1 - sX * (j + 1), (i + 1)*sY - y1, -z1, f);
-			writeVertexToF(x1 - sX * j, (i + 1)*sY - y1, -z1, f);
-			writeVertexToF(x1 - sX * j, i*sY - y1, -z1, f);
+			writePointToF(x1 - sX * (j + 1), (i + 1)*sY - y1, -z1, f);
+			writePointToF(x1 - sX * j, (i + 1)*sY - y1, -z1, f);
+			writePointToF(x1 - sX * j, i*sY - y1, -z1, f);
 		}
 	}
 	
@@ -63,13 +63,13 @@ int box(float x,float y, float z, float slices, std::string file) {
 	for (int i = 0; i < slices; i++) {
 		for (int j = 0; j < slices; j++) {
 
-			writeVertexToF(-x1 + (sX * j), i*sY - y1, z1, f);
-			writeVertexToF(-x1 + (sX * (j+1)), i*sY - y1, z1, f);
-			writeVertexToF(-x1 + (sX * (j+1)), (i+1)*sY - y1, z1, f);
+			writePointToF(-x1 + (sX * j), i*sY - y1, z1, f);
+			writePointToF(-x1 + (sX * (j+1)), i*sY - y1, z1, f);
+			writePointToF(-x1 + (sX * (j+1)), (i+1)*sY - y1, z1, f);
 
-			writeVertexToF(-x1 + (sX * (j+1)), (i + 1)*sY - y1, z1, f);
-			writeVertexToF(-x1 + (sX * j), (i+1)*sY-y1, z1, f);
-			writeVertexToF(-x1 + (sX * j), i*sY - y1, z1, f);
+			writePointToF(-x1 + (sX * (j+1)), (i + 1)*sY - y1, z1, f);
+			writePointToF(-x1 + (sX * j), (i+1)*sY-y1, z1, f);
+			writePointToF(-x1 + (sX * j), i*sY - y1, z1, f);
 		}
 	}
 	
@@ -77,13 +77,13 @@ int box(float x,float y, float z, float slices, std::string file) {
 	//Face Traseira
 	for (int i = 0; i < slices; i++) {
 		for (int j = 0; j < slices; j++) {
-			writeVertexToF(-x1, i*sY - y1, -z1 + (sZ*j), f);
-			writeVertexToF(-x1, i*sY - y1, -z1 + (sZ*(j + 1)), f);
-			writeVertexToF(-x1, (i + 1)*sY - y1, -z1 + (sZ*(j + 1)), f);
+			writePointToF(-x1, i*sY - y1, -z1 + (sZ*j), f);
+			writePointToF(-x1, i*sY - y1, -z1 + (sZ*(j + 1)), f);
+			writePointToF(-x1, (i + 1)*sY - y1, -z1 + (sZ*(j + 1)), f);
 
-			writeVertexToF(-x1, (i + 1)*sY - y1, -z1 + (sZ*(j + 1)), f);
-			writeVertexToF(-x1, (i + 1)*sY - y1, -z1 + (sZ*j), f);
-			writeVertexToF(-x1, i*sY - y1, -z1 + (sZ*j), f);
+			writePointToF(-x1, (i + 1)*sY - y1, -z1 + (sZ*(j + 1)), f);
+			writePointToF(-x1, (i + 1)*sY - y1, -z1 + (sZ*j), f);
+			writePointToF(-x1, i*sY - y1, -z1 + (sZ*j), f);
 		}
 	}
 	
@@ -91,26 +91,26 @@ int box(float x,float y, float z, float slices, std::string file) {
 	//Face Superior
 	for (int i = 0; i < slices; i++) {
 		for (int j = 0; j < slices; j++) {
-			writeVertexToF(x1 - sX * j, y1, z1 - sZ * i, f);
-			writeVertexToF(x1 - sX * j, y1, z1 - sZ * (i + 1), f);
-			writeVertexToF(x1 - sX * (j + 1), y1, z1 - sZ * (i + 1), f);
+			writePointToF(x1 - sX * j, y1, z1 - sZ * i, f);
+			writePointToF(x1 - sX * j, y1, z1 - sZ * (i + 1), f);
+			writePointToF(x1 - sX * (j + 1), y1, z1 - sZ * (i + 1), f);
 
-			writeVertexToF(x1 - sX * (j + 1), y1, z1 - sZ * (i + 1), f);
-			writeVertexToF(x1 - sX * (j+1), y1, z1 - sZ * i, f);
-			writeVertexToF(x1 - sX * j, y1, z1 - sZ * i, f);
+			writePointToF(x1 - sX * (j + 1), y1, z1 - sZ * (i + 1), f);
+			writePointToF(x1 - sX * (j+1), y1, z1 - sZ * i, f);
+			writePointToF(x1 - sX * j, y1, z1 - sZ * i, f);
 		}
 	}
 	
 	//Face Inferior
 	for (int i = 0; i < slices; i++) {
 		for (int j = 0; j < slices; j++) {
-			writeVertexToF(x1 - sX * j, -y1, z1 - sZ * i, f);
-			writeVertexToF(x1 - sX * (j + 1), -y1, z1 - sZ * (i + 1), f);
-			writeVertexToF(x1 - sX * j, -y1, z1 - sZ * (i + 1), f);
+			writePointToF(x1 - sX * j, -y1, z1 - sZ * i, f);
+			writePointToF(x1 - sX * (j + 1), -y1, z1 - sZ * (i + 1), f);
+			writePointToF(x1 - sX * j, -y1, z1 - sZ * (i + 1), f);
 
-			writeVertexToF(x1 - sX * (j + 1), -y1, z1 - sZ * (i + 1), f);
-			writeVertexToF(x1 - sX * j, -y1, z1 - sZ * i, f);
-			writeVertexToF(x1 - sX * (j + 1), -y1, z1 - sZ * i, f);
+			writePointToF(x1 - sX * (j + 1), -y1, z1 - sZ * (i + 1), f);
+			writePointToF(x1 - sX * j, -y1, z1 - sZ * i, f);
+			writePointToF(x1 - sX * (j + 1), -y1, z1 - sZ * i, f);
 		}
 	}
 	

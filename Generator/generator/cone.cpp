@@ -25,9 +25,9 @@ int coneBottomCircle(float radius, int slices, std::string file) {
 		x2 = radius * cos(angle * (i + 1));
 		z2 = radius * sin(angle * (i + 1));
 		
-		writeVertexToF(0.0, 0.0, 0.0, f);
-		writeVertexToF(x1, 0.0, z1, f);
-		writeVertexToF(x2, 0.0, z2, f);		
+		writePointToF(0.0, 0.0, 0.0, f);
+		writePointToF(x1, 0.0, z1, f);
+		writePointToF(x2, 0.0, z2, f);
 	}
 
 	f.close();
@@ -57,13 +57,13 @@ int coneUpperBody(float radius, float height, int slices, int stacks, std::strin
 			x2 = radius * cos(angleH * (j + 1));
 			z2 = radius * sin(angleH * (j + 1));
 
-			writeVertexToF(x1 * h1, stackHeight * i,	z1 * h1, f);
-			writeVertexToF(x1 * h2, stackHeight * (i+1), z1 * h2, f);
-			writeVertexToF(x2 * h1, stackHeight * i,	z2 * h1, f);
+			writePointToF(x1 * h1, stackHeight * i,	z1 * h1, f);
+			writePointToF(x1 * h2, stackHeight * (i+1), z1 * h2, f);
+			writePointToF(x2 * h1, stackHeight * i,	z2 * h1, f);
 
-			writeVertexToF(x1 * h2, stackHeight * (i+1), z1 * h2, f);
-			writeVertexToF(x2 * h2, stackHeight * (i+1), z2 * h2, f);
-			writeVertexToF(x2 * h1, stackHeight * i, z2 * h1, f);
+			writePointToF(x1 * h2, stackHeight * (i+1), z1 * h2, f);
+			writePointToF(x2 * h2, stackHeight * (i+1), z2 * h2, f);
+			writePointToF(x2 * h1, stackHeight * i, z2 * h1, f);
 		}
 	}
 

@@ -17,9 +17,9 @@ int circle(float radius, int slices, std::string file) {
 		x2 = radius * cos(angle * (i + 1));
 		z2 = radius * sin(angle * (i + 1));
 		
-		writeVertexToF(0.0, 0.0, 0.0, f);
-		writeVertexToF(x1, 0.0, z1, f);
-		writeVertexToF(x2, 0.0, z2, f);		
+		writePointToF(0.0, 0.0, 0.0, f);
+		writePointToF(x1, 0.0, z1, f);
+		writePointToF(x2, 0.0, z2, f);
 	}
 
 	f.close();

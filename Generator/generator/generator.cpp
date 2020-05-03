@@ -9,7 +9,7 @@
 #include "circle.h"
 
 //Path relativo para a diretoria onde os ficheiros s�o gerados
-std::string path = "../Generated/";
+std::string path = "../../Generated/";
 
 //Numero m�nimo de argumentos necess�rios ()
 const int MIN_ARGS = 4;
@@ -90,7 +90,11 @@ int main(int argc, char** argv)
         std::string real_path = path + argv[5];
         sphere(radius,slices,stacks,real_path);
 	}
-	else printf("It's..... nothing.\n");
+	else if (type.compare("bezier") == 0) {
+
+
+
+	}else printf("It's..... nothing.\n");
     
 }
 

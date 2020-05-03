@@ -23,13 +23,13 @@ int sphere(float radius, int slices, int stacks, std::string file) {
 			y1 = radius * sin((-PI/2) + angleV * i);
 			y2 = radius * sin((-PI/2) + angleV *(i + 1));
 
-			writeVertexToF(x1 * h1, y1, z1 * h1, f);
-			writeVertexToF(x1 * h2, y2, z1 * h2, f);
-			writeVertexToF(x2 * h1, y1, z2 * h1, f);
+			writePointToF(x1 * h1, y1, z1 * h1, f);
+			writePointToF(x1 * h2, y2, z1 * h2, f);
+			writePointToF(x2 * h1, y1, z2 * h1, f);
 
-			writeVertexToF(x1 * h2, y2, z1 * h2, f);
-			writeVertexToF(x2 * h2, y2, z2 * h2, f);
-			writeVertexToF(x2 * h1, y1, z2 * h1, f);
+			writePointToF(x1 * h2, y2, z1 * h2, f);
+			writePointToF(x2 * h2, y2, z2 * h2, f);
+			writePointToF(x2 * h1, y1, z2 * h1, f);
 		}
 	}
 

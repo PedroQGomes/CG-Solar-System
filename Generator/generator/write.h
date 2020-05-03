@@ -19,4 +19,7 @@ int writeToF(char * text, std::ofstream& file);
 *@param file nome do ficheiro
 *@return 1 if successful
 */
-int writeVertexToF(float x, float y, float z, std::ofstream& file);
+int writePointToF(float x, float y, float z, std::ofstream& file);
+FILE* openFile(char* fname);
+int writePointToFile(float x, float y, float z, FILE* file);
+int writeIntToF(int i, FILE* file);
