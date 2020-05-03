@@ -1,19 +1,20 @@
 #include "vertex.h"
+#include <corecrt_malloc.h>
 
 
-vertex newVertex(float x1, float y1, float z1) {
-	vertex v;
-	v.x = x1;
-	v.y = y1;
-	v.z = z1;
-	return v;
+Vertex newVertex(float x1, float y1, float z1) {
+    Vertex v = (Vertex)malloc(sizeof(struct vertex));
+    if (!v)
+        return NULL;
+    v->x = x1;
+    v->y = y1; 
+    v->z = z1;
+    return v;
 }
 
-vertex newVertex(vertex v1){
+/*
+Vertex newVertex(Vertex v1){
 
-	vertex v;
-	v.x = v1.x;
-	v.y = v1.y;
-	v.z = v1.z;
+	Vertex v = new Vertex(v1.x, v1.y, v1.z);
 	return v;
-}
+}*/

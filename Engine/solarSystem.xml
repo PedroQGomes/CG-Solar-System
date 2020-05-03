@@ -13,7 +13,7 @@
         <!--Mercury-->
         <group>
             <!--Actual Distance: 0.4 AU-->
-            <translate time = "10">
+            <translate time = "3000">
                 <point X="12" Y="0" Z="0"/>
                 <point X="8.486" Y="0" Z="-8.486"/>
                 <point X="0" Y="0" Z="-12"/>
@@ -33,9 +33,9 @@
         <!--Venus-->
         <group>
             <!--Actual Distance: 0.7 AU-->
-            <translate time = "18">
+            <translate time = "4000">
                 <point X="18" Y="0" Z="0"/>
-                <point X="12.728" Y="0" Z="12.728"/>
+                <point X="12.728" Y="0" Z="-12.728"/>
                 <point X="0" Y="0" Z="-18"/>
                 <point X="-12.728" Y="0" Z="-12.728"/>
                 <point X="-18" Y="0" Z="0"/>
@@ -52,7 +52,7 @@
         <!--Earth-->
         <group>
             <!--Actual Distance: 1 AU-->
-            <translate time = "24">
+            <translate time = "5000">
                 <point X="24" Y="0" Z="0"/>
                 <point X="16.971" Y="0" Z="-16.971"/>
                 <point X="0" Y="0" Z="-24"/>
@@ -66,21 +66,12 @@
             <models>
                 <model file="sphere.3d"/>
             </models>
-
-            <!--Moon-->
-            <group>
-                <translate Y = "3.0"/>
-                <scale X="0.7" Y="0.8" Z="0.9"/>
-                <models>
-                <model file="sphere.3d"/>
-            </models>
-            </group>
         </group>
 
         <!--Mars-->
         <group>
             <!--Actual Distance: 1.5 AU-->
-            <translate time = "5">
+            <translate time = "6000">
                 <point X="34" Y="0" Z="0"/>
                 <point X="24.042" Y="0" Z="-24.042"/>
                 <point X="0" Y="0" Z="-34"/>
@@ -99,7 +90,7 @@
         <!--Jupiter-->
         <group>
             <!--Actual Distance: 5.2 AU-->
-            <translate time = "5">
+            <translate time = "8000">
                 <point X="74" Y="0" Z="0"/>
                 <point X="52.326" Y="0" Z="-52.326"/>
                 <point X="0" Y="0" Z="-74"/>
@@ -118,7 +109,7 @@
         <!--Saturn-->
         <group>
             <!--Actual Distance: 9.5 AU-->
-            <translate time = "5">
+            <translate time = "9000">
                 <point X="160" Y="0" Z="0"/>
                 <point X="113.137" Y="0" Z="-113.137"/>
                 <point X="0" Y="0" Z="-160"/>
@@ -137,7 +128,7 @@
         <!--Uranus-->
         <group>
             <!--Actual Distance: 19.2 AU-->
-            <translate time = "5">
+            <translate time = "10000">
                 <point X="354" Y="0" Z="0"/>
                 <point X="250.316" Y="0" Z="-250.316"/>
                 <point X="0" Y="0" Z="-354"/>
@@ -153,10 +144,10 @@
             </models>
         </group>
 
-        <!--Neputne-->
+        <!--Neputne--> 
         <group>
             <!--Actual Distance: 30.02-->
-            <translate time= "5">
+            <translate time = "12000">
                 <point X="574" Y="0" Z="0"/>
                 <point X="405.879" Y="0" Z="-405.879"/>
                 <point X="0" Y="0" Z="-574"/>

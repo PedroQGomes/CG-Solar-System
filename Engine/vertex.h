@@ -1,13 +1,11 @@
 #pragma once
 
 
-typedef struct Vertex {
+struct vertex {
 	float x;
 	float y;
 	float z;
-} vertex;
+};
+typedef struct vertex* Vertex;
 
-
-vertex newVertex(float x1, float y1, float z1);
-
-vertex newVertex(vertex v1);
+Vertex newVertex(float x1, float y1, float z1);

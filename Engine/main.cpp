@@ -62,23 +62,6 @@ void changeSize(int w, int h) {
 }
 
 
-void mydraw() {
-	glPushMatrix();
-	float tmpx = translationGetX((*it)->translation);
-	float tmpy = translationGetY((*it)->translation);
-	float tmpz = translationGetZ((*it)->translation);
-
-	float stmpx = scaleGetX((*it)->scale);
-	float stmpy = scaleGetY((*it)->scale);
-	float stmpz = scaleGetZ((*it)->scale);
-
-	glTranslatef(tmpx, tmpy, tmpz);
-	glScalef(stmpx, stmpy, stmpz);
-	drawModel((*it)->models->front());
-	glPopMatrix();
-
-}
-
 
 void renderScene(void) {
 
@@ -250,7 +233,7 @@ int main(int argc, char **argv) {
 	
 	it = aux.begin();
 	objectCount = aux.size();
-
+	printf("%d\n", objectCount);
 	glMain(0, argv);
 
 

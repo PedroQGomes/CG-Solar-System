@@ -17,7 +17,7 @@ void parseModels(XMLNode* models,GroupModel groupModel) {
     XMLElement* e = models->FirstChildElement("model");
     while(e != nullptr) {
         addModel(groupModel,parseModel(e->Attribute("file")));
-   
+        
 
         e = e->NextSiblingElement("model");
     }
@@ -25,11 +25,32 @@ void parseModels(XMLNode* models,GroupModel groupModel) {
 void parseTranslation(XMLNode* translation,GroupModel groupModel) {
     XMLElement* e = (XMLElement*) translation;
     Translation tmp = newTranslation();
-    translationSetX(tmp,e->IntAttribute("X",0));
-    translationSetY(tmp,e->IntAttribute("Y",0));
-    translationSetZ(tmp,e->IntAttribute("Z",0));
+    tmp->time = e->FloatAttribute("time", 10);
+    printf("tempo %f\n", tmp->time);
+  
+    for (XMLElement* g = e->FirstChildElement(); g != nullptr; g = g->NextSiblingElement()) {
+        float tx, ty, tz;
+        const char* type = g->Value();
+        if (strcmp(type, "point") == 0) {
+            tx = g->FloatAttribute("X", 0.0);
+            ty = g->FloatAttribute("Y", 0.0);
+            tz = g->FloatAttribute("Z", 0.0);
+            Vertex v = newVertex(tx, ty, tz);
+            tmp->pontos->push_back(v);
+            
+        } 
+        
+    }
+    translationSetX(tmp,e->IntAttribute("time",0));
     setTranslation(groupModel,tmp);
+
+
+
+
 }
+
+
+
 void parseScale(XMLNode* scale,GroupModel groupModel) {
     XMLElement* e = (XMLElement*) scale;
     Scale tmp = newScale();
