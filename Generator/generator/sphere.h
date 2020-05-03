@@ -8,3 +8,4 @@
 
 
 int sphere(float radius, int slices, int stacks, std::string file);
+int sphereVBO(float rad, int slices, int stacks, std::string file);

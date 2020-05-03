@@ -23,3 +23,4 @@ int writePointToF(float x, float y, float z, std::ofstream& file);
 FILE* openFile(char* fname);
 int writePointToFile(float x, float y, float z, FILE* file);
 int writeIntToF(int i, FILE* file);
+int writeIntToFile(int i, std::ofstream& file);

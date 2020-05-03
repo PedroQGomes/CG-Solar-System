@@ -20,6 +20,15 @@ int writeIntToF(int i, FILE* file) {
 	return 0;
 }
 
+int writeIntToFile(int i, std::ofstream& file) {
+	if (!file.good()) {
+		printf("NULL File");
+		return 1;
+	}
+	file << i << "\n";
+	return 0;
+}
+
 int writePointToFile(float x, float y, float z, FILE* file) {
 
 	if (file == NULL)

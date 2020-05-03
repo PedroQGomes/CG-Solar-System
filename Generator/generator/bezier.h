@@ -5,8 +5,8 @@
 #include "point.h"
 
 
-int parseBezierPatch(char* fileName, std::vector<Point>* controlPoints, std::vector<int>* indices);
+int bezierParser(char* fileName, std::vector<Point>* controlPoints, std::vector<int>* indices);
 
-int generateBezierModel(std::vector<Point>* controlPoints, std::vector<int>* indices, int tessellation, char* fileName);
+int mkBezier(std::vector<Point>* controlPoints, std::vector<int>* indices, int tessellation, char* fileName);
 
 #endif BEZIER_H

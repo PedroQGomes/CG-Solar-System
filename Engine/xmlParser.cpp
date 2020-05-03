@@ -26,7 +26,7 @@ void parseTranslation(XMLNode* translation,GroupModel groupModel) {
     XMLElement* e = (XMLElement*) translation;
     Translation tmp = newTranslation();
     tmp->time = e->FloatAttribute("time", 10);
-    printf("tempo %f\n", tmp->time);
+    //printf("tempo %f\n", tmp->time);
   
     for (XMLElement* g = e->FirstChildElement(); g != nullptr; g = g->NextSiblingElement()) {
         float tx, ty, tz;

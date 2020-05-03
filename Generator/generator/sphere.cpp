@@ -1,5 +1,6 @@
 #include "sphere.h"
 #include <cmath>
+#include "point.h"
 
 int sphere(float radius, int slices, int stacks, std::string file) {
 
@@ -36,6 +37,60 @@ int sphere(float radius, int slices, int stacks, std::string file) {
 
 	return 1;
 
+
+
+}
+
+int sphereVBO(float rad, int slices, int stacks, std::string file) {
+    std::ofstream f;
+    f.open(file);
+    // invalid arguments
+    if (rad < 0 || slices < 1 || stacks < 1)
+        return 1;
+
+    float baseAlpha = static_cast<float>((PI * 2) / slices);
+    float baseBeta = static_cast<float>((PI) / stacks);
+    
+    for (int stack = 0; stack <= stacks; stack++) {
+
+        float beta = stack * baseBeta; 
+
+        for (int slice = 0; slice <= slices; slice++) {
+
+            float alpha = slice * baseAlpha; 
+
+            float x, y, z;
+
+            x = rad * sin(beta) * cos(alpha);
+            y = rad * cos(beta);
+            z = rad * sin(beta) * sin(alpha);
+
+            writePointToF(x, y, z, f);
+        }
+    }
+    printf("slices %d\n",slices);
+    for (int stack = 0; stack < stacks; stack++) {
+        for (int slice = 0; slice < slices; slice++) {
+            // A --- C
+            // B --- D
+            int indexA, indexB, indexC, indexD;
+            indexA = stack * (slices + 1) + slice;
+            indexB = (stack + 1) * (slices + 1) + slice;
+            indexC = indexA + 1;
+            indexD = indexB + 1;
+            printf("aqui\n");
+            writeIntToFile(indexA, f);
+            writeIntToFile(indexB, f);
+            writeIntToFile(indexC, f);
+
+            writeIntToFile(indexB, f);
+            writeIntToFile(indexD, f);
+            writeIntToFile(indexC, f);
+        }
+    }
+
+
+    return 0;
 
 
 }

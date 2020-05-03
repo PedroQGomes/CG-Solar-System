@@ -6,7 +6,7 @@
         <group>
             <scale X="8.16" Y="8.16" Z="8.16"/>
             <models>
-                <model file="sphere.3d"/>
+                <model file="sphereVBO.3d"/>
             </models>
         </group>
 

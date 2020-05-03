@@ -7,6 +7,7 @@
 #include "cone.h"
 #include "sphere.h"
 #include "circle.h"
+#include "bezier.h"
 
 //Path relativo para a diretoria onde os ficheiros s�o gerados
 std::string path = "../../Generated/";
@@ -88,11 +89,15 @@ int main(int argc, char** argv)
         int slices = std::stof(argv[3]);
         int stacks = std::stof(argv[4]);
         std::string real_path = path + argv[5];
-        sphere(radius,slices,stacks,real_path);
+        //sphere(radius,slices,stacks,real_path);
+		sphereVBO(radius, slices, stacks, real_path);
 	}
 	else if (type.compare("bezier") == 0) {
-
-
+		
+		std::vector<Point>* controlPoints = new std::vector<Point>();
+		auto* indices = new std::vector<int>();
+		int error = bezierParser(argv[2], controlPoints, indices);
+		error = mkBezier(controlPoints, indices, atoi(argv[3]), argv[4]);
 
 	}else printf("It's..... nothing.\n");
     

@@ -31,7 +31,7 @@ void multVectorMatrix(float* v, float* m, float* res) {
 }
 
 
-int parseBezierPatch(char* fileName, std::vector<Point>* controlPoints, std::vector<int>* indices) {
+int bezierParser(char* fileName, std::vector<Point>* controlPoints, std::vector<int>* indices) {
 	std::ifstream file(fileName);
 	std::string line;
 
@@ -128,7 +128,7 @@ void getBezier(float u, float v, float** pX, float** pY, float** pZ, float* coor
 	}
 }
 
-int generateBezierModel(std::vector<Point>* controlPoints, std::vector<int>* indices, int tessellation, char* fileName) {
+int mkBezier(std::vector<Point>* controlPoints, std::vector<int>* indices, int tessellation, char* fileName) {
 
 	FILE* file = openFile(fileName);
 	if (!file) {
