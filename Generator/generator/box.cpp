@@ -31,88 +31,92 @@ int box(float x,float y, float z, float slices, std::string file) {
     printf("Writting\n");
 
 	//Face Frontal
-	for (int i = 0; i < slices; i++) {
-		for (int j = 0; j < slices; j++) {
-			writePointToF(x1, i*sY -y1 , z1 - (sZ*j), f);
-			writePointToF(x1, i*sY - y1, z1 - (sZ*(j+1)), f);
-			writePointToF(x1, (i + 1)*sY - y1, z1 - (sZ*(j + 1)), f);
-
-			
-			writePointToF(x1, (i + 1)*sY - y1, z1 - (sZ*(j + 1)), f);
-			writePointToF(x1, (i + 1)*sY - y1, z1 - (sZ*j), f);
-			writePointToF(x1, i*sY - y1, z1 - (sZ*j), f);
+	for (int i = 0; i <= slices; i++) {
+		for (int j = 0; j <= slices; j++) {
+			writePointToF(x1 - j * sX, y1 - i * sY, z1, f);
 		}
 	}
 	
 
 	//Face Lateral Direita
-	for (int i = 0; i < slices; i++) {
-		for (int j = 0; j < slices; j++) {
-			writePointToF(x1 - sX * j, i*sY - y1, -z1, f);
-			writePointToF(x1 - sX * (j + 1), i*sY - y1, -z1, f);
-			writePointToF(x1 - sX * (j + 1), (i + 1)*sY - y1, -z1, f);
-
-			writePointToF(x1 - sX * (j + 1), (i + 1)*sY - y1, -z1, f);
-			writePointToF(x1 - sX * j, (i + 1)*sY - y1, -z1, f);
-			writePointToF(x1 - sX * j, i*sY - y1, -z1, f);
+	for (int i = 0; i <= slices; i++) {
+		for (int j = 0; j <= slices; j++) {
+			writePointToF(x1, y1 - sY*i, z1 - j * sZ, f);
 		}
 	}
 	
 	
 	//Face Lateral Esquerda
-	for (int i = 0; i < slices; i++) {
-		for (int j = 0; j < slices; j++) {
-
-			writePointToF(-x1 + (sX * j), i*sY - y1, z1, f);
-			writePointToF(-x1 + (sX * (j+1)), i*sY - y1, z1, f);
-			writePointToF(-x1 + (sX * (j+1)), (i+1)*sY - y1, z1, f);
-
-			writePointToF(-x1 + (sX * (j+1)), (i + 1)*sY - y1, z1, f);
-			writePointToF(-x1 + (sX * j), (i+1)*sY-y1, z1, f);
-			writePointToF(-x1 + (sX * j), i*sY - y1, z1, f);
+	for (int i = 0; i <= slices; i++) {
+		for (int j = 0; j <= slices; j++) {
+			writePointToF(-x1, y1 - sY * i, z1 - j * sZ, f);
 		}
 	}
 	
 	
 	//Face Traseira
-	for (int i = 0; i < slices; i++) {
-		for (int j = 0; j < slices; j++) {
-			writePointToF(-x1, i*sY - y1, -z1 + (sZ*j), f);
-			writePointToF(-x1, i*sY - y1, -z1 + (sZ*(j + 1)), f);
-			writePointToF(-x1, (i + 1)*sY - y1, -z1 + (sZ*(j + 1)), f);
-
-			writePointToF(-x1, (i + 1)*sY - y1, -z1 + (sZ*(j + 1)), f);
-			writePointToF(-x1, (i + 1)*sY - y1, -z1 + (sZ*j), f);
-			writePointToF(-x1, i*sY - y1, -z1 + (sZ*j), f);
+	for (int i = 0; i <= slices; i++) {
+		for (int j = 0; j <= slices; j++) {
+			writePointToF(x1 - j * sX, y1 - i * sY, -z1, f);
 		}
 	}
 	
 	
 	//Face Superior
-	for (int i = 0; i < slices; i++) {
-		for (int j = 0; j < slices; j++) {
-			writePointToF(x1 - sX * j, y1, z1 - sZ * i, f);
-			writePointToF(x1 - sX * j, y1, z1 - sZ * (i + 1), f);
-			writePointToF(x1 - sX * (j + 1), y1, z1 - sZ * (i + 1), f);
-
-			writePointToF(x1 - sX * (j + 1), y1, z1 - sZ * (i + 1), f);
-			writePointToF(x1 - sX * (j+1), y1, z1 - sZ * i, f);
-			writePointToF(x1 - sX * j, y1, z1 - sZ * i, f);
+	for (int i = 0; i <= slices; i++) {
+		for (int j = 0; j <= slices; j++) {
+			writePointToF(x1 - i * sX, y1, z1 - j * sZ, f);
 		}
 	}
 	
 	//Face Inferior
-	for (int i = 0; i < slices; i++) {
-		for (int j = 0; j < slices; j++) {
-			writePointToF(x1 - sX * j, -y1, z1 - sZ * i, f);
-			writePointToF(x1 - sX * (j + 1), -y1, z1 - sZ * (i + 1), f);
-			writePointToF(x1 - sX * j, -y1, z1 - sZ * (i + 1), f);
-
-			writePointToF(x1 - sX * (j + 1), -y1, z1 - sZ * (i + 1), f);
-			writePointToF(x1 - sX * j, -y1, z1 - sZ * i, f);
-			writePointToF(x1 - sX * (j + 1), -y1, z1 - sZ * i, f);
+	for (int i = 0; i <= slices; i++) {
+		for (int j = 0; j <= slices; j++) {
+			writePointToF(x1 - i * sX, -y1, z1 - j * sZ, f);
 		}
 	}
-	
+	mkIndices(slices, f);
     return 1;
+}
+
+void mkIndices(int div, std::ofstream& f) {
+	int curr = 0;
+	for (int numPlanos = 0; numPlanos < 3; numPlanos++) {
+		// Face para fora
+		// D -- C
+		// B -- A
+		for (int i = 0; i < div; i++) {
+			for (int j = 0; j < div; j++) {
+				int indexA = i * (div + 1) + j + curr;
+				int indexB = (i + 1) * (div + 1) + j + curr;
+				int indexC = indexA + 1;
+				int indexD = indexB + 1;
+				writeIntToFile(indexA, f);
+				writeIntToFile(indexC, f);
+				writeIntToFile(indexB, f);
+
+				writeIntToFile(indexB, f);
+				writeIntToFile(indexC, f);
+				writeIntToFile(indexD, f);
+			}
+		}
+		curr += (div + 1) * (div + 1);
+		for (int i = 0; i < div; i++) {
+			for (int j = 0; j < div; j++) {
+				int indexA = i * (div + 1) + j + curr;
+				int indexB = (i + 1) * (div + 1) + j + curr;
+				int indexC = indexA + 1;
+				int indexD = indexB + 1;
+
+				writeIntToFile(indexD, f);
+				writeIntToFile(indexC, f);
+				writeIntToFile(indexB, f);
+
+				writeIntToFile(indexC, f);
+				writeIntToFile(indexA, f);
+				writeIntToFile(indexB, f);
+			}
+		}
+		curr += (div + 1) * (div + 1);
+	}
 }

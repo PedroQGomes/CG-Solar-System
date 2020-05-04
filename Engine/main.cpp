@@ -95,7 +95,6 @@ void renderScene(void) {
 
     glEnd();
 // put drawing instructions here
-
 	drawGroupModel(it,objectCount,time);
 
 // End of frame
@@ -203,6 +202,7 @@ int glMain(int argc, char**argv) {
 	if (GLEW_OK != err) {
 		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
 	}
+	glEnableClientState(GL_VERTEX_ARRAY);
 	fillALLbuff(it, objectCount);
 	// Required callback registry 
 	glutDisplayFunc(renderScene);

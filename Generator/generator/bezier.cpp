@@ -31,17 +31,18 @@ void multVectorMatrix(float* v, float* m, float* res) {
 }
 
 
-int bezierParser(char* fileName, std::vector<Point>* controlPoints, std::vector<int>* indices) {
+int bezierParser(std::string fileName, std::vector<Point>* controlPoints, std::vector<int>* indices) {
 	std::ifstream file(fileName);
 	std::string line;
 
 	int numPatches = 0;
 	int numControlPoints = 0;
 	int current_line = 0;
-
+	if (file.fail()) printf("O ficheiro nao existe.\n");
 	while (std::getline(file, line)) {
 		std::istringstream stringStream(line);
-
+		std::string tmp;
+		printf("AQUIASND ASD %s\n", tmp);
 		if (current_line == 0) {
 			if (!(stringStream >> numPatches)) {
 				fprintf(stderr, "PARSING FAILURE! Could not retrieve number of patches!");
@@ -98,6 +99,7 @@ int bezierParser(char* fileName, std::vector<Point>* controlPoints, std::vector<
 		}
 		current_line++;
 	}
+	printf("PARSER ACABOU\n");
 	return 0;
 }
 
@@ -128,12 +130,13 @@ void getBezier(float u, float v, float** pX, float** pY, float** pZ, float* coor
 	}
 }
 
-int mkBezier(std::vector<Point>* controlPoints, std::vector<int>* indices, int tessellation, char* fileName) {
+int mkBezier(std::vector<Point>* controlPoints, std::vector<int>* indices, int tessellation, std::string file) {
 
-	FILE* file = openFile(fileName);
-	if (!file) {
-		fprintf(stderr, "Ficheiro indisponivel %s\n", fileName);
-		return 2;
+	std::ofstream f;
+	f.open(file);
+	if (!f.good()) {
+		printf("DEU MERDA\n");
+
 	}
 
 	// each vertex has 3 components, 16 floats per patch
@@ -164,7 +167,7 @@ int mkBezier(std::vector<Point>* controlPoints, std::vector<int>* indices, int t
 			for (int v = 0; v <= tessellation; v++) {
 
 				getBezier(u / (float)tessellation, v / (float)tessellation, (float**)pX, (float**)pY, (float**)pZ, coordsP);
-				writePointToFile(coordsP[0], coordsP[1], coordsP[2], file);
+				writePointToF(coordsP[0], coordsP[1], coordsP[2], f);
 			}
 		}
 	}
@@ -184,15 +187,17 @@ int mkBezier(std::vector<Point>* controlPoints, std::vector<int>* indices, int t
 				int indexC = currentPatch * indicesPerPatch + (tessellation + 1) * (u + 1) + v;
 				int indexD = indexC + 1;
 
-				writeIntToF(indexA, file);
-				writeIntToF(indexC, file);
-				writeIntToF(indexB, file);
+				writeIntToFile(indexA, f);
+				writeIntToFile(indexC, f);
+				writeIntToFile(indexB, f);
 
-				writeIntToF(indexC, file);
-				writeIntToF(indexD, file);
-				writeIntToF(indexB, file);
+				writeIntToFile(indexC, f);
+				writeIntToFile(indexD, f);
+				writeIntToFile(indexB, f);
 
 			}
 		}
 	}
+	printf("MK BEZIER ACABOU\n");
+	return 0;
 }

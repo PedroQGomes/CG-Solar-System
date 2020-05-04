@@ -66,7 +66,7 @@ void parseRotation(XMLNode* rotate,GroupModel groupModel) {
     rotationSetX(rotation,e->FloatAttribute("X",0.0F));
     rotationSetY(rotation,e->FloatAttribute("Y",0.0F));
     rotationSetZ(rotation,e->FloatAttribute("Z",0.0F));
-    rotationSetAngle(rotation,e->FloatAttribute("angle",0.0F));
+    rotationSetAngle(rotation,e->FloatAttribute("time",0.0F));
     setRotation(groupModel,rotation);
 }
 

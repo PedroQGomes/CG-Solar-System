@@ -1,5 +1,6 @@
 #pragma once
 #include "operation3f.h"
+#include <GL/glut.h>
 
 typedef struct rotation {
 	float angle;
@@ -24,3 +25,5 @@ float rotationGetY(Rotation r);
 float rotationGetZ(Rotation r);
 
 float rotationGetAngle(Rotation r);
+
+void drawRotation(Rotation r,int time);

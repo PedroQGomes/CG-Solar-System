@@ -62,3 +62,11 @@ float rotationGetAngle(Rotation r) {
 		return 0;
 	}
 }
+
+void drawRotation(Rotation r, int time) {
+	if (r) {
+		glRotatef(time * 360/ r->angle, getX(r->o), getY(r->o), getZ(r->o));
+	}
+
+}
+

@@ -54,7 +54,7 @@ int main(int argc, char** argv)
 		float x = std::stof(argv[2]);
         float y = std::stof(argv[3]);
         float z = std::stof(argv[4]);
-		float s;
+		float s = 2;
 		std::string real_path;
 		if (argc == 7) {
 			s = std::stof(argv[5]);
@@ -93,11 +93,13 @@ int main(int argc, char** argv)
 		sphereVBO(radius, slices, stacks, real_path);
 	}
 	else if (type.compare("bezier") == 0) {
-		
+		printf("It's a bezier model!\n");
 		std::vector<Point>* controlPoints = new std::vector<Point>();
 		auto* indices = new std::vector<int>();
-		int error = bezierParser(argv[2], controlPoints, indices);
-		error = mkBezier(controlPoints, indices, atoi(argv[3]), argv[4]);
+		std::string real_path = path + "teapot.patch";
+		int error = bezierParser(real_path , controlPoints, indices);
+		
+		error = mkBezier(controlPoints, indices, atoi(argv[3]), real_path);
 
 	}else printf("It's..... nothing.\n");
     

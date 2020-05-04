@@ -44,10 +44,7 @@ int sphere(float radius, int slices, int stacks, std::string file) {
 int sphereVBO(float rad, int slices, int stacks, std::string file) {
     std::ofstream f;
     f.open(file);
-    // invalid arguments
-    if (rad < 0 || slices < 1 || stacks < 1)
-        return 1;
-
+    
     float baseAlpha = static_cast<float>((PI * 2) / slices);
     float baseBeta = static_cast<float>((PI) / stacks);
     
@@ -68,7 +65,7 @@ int sphereVBO(float rad, int slices, int stacks, std::string file) {
             writePointToF(x, y, z, f);
         }
     }
-    printf("slices %d\n",slices);
+    //printf("slices %d\n",slices);
     for (int stack = 0; stack < stacks; stack++) {
         for (int slice = 0; slice < slices; slice++) {
             // A --- C
@@ -78,7 +75,7 @@ int sphereVBO(float rad, int slices, int stacks, std::string file) {
             indexB = (stack + 1) * (slices + 1) + slice;
             indexC = indexA + 1;
             indexD = indexB + 1;
-            printf("aqui\n");
+            //printf("aqui\n");
             writeIntToFile(indexA, f);
             writeIntToFile(indexB, f);
             writeIntToFile(indexC, f);
