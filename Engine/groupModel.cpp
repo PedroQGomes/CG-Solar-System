@@ -58,6 +58,7 @@ std::vector<_groupModel*> getGroups(GroupModel groupModel) {
 
 }
 
+
 void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int time) {
 
  
@@ -79,7 +80,7 @@ void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int tim
         //glRotatef(time,0,1,0);
         //glTranslatef(tmpx, tmpy, tmpz);
         glScalef(stmpx, stmpy, stmpz);
-        drawModel((*it)->models->front());
+        drawModel(&((*it)->models->front()));
         glPopMatrix();
         it++;
 
@@ -90,7 +91,19 @@ void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int tim
 
     }
 
+}
 
+void fillALLbuff(std::vector<GroupModel>::iterator it, int objectCount) {
+    for (int i = 0; i < objectCount; i++) {
+        
+        fillBuffers(&(*it)->models->front());
+        it++;
+
+    }
+    for (int j = objectCount; j > 0; j--) {
+        it--;
+
+    }
 
 }
 

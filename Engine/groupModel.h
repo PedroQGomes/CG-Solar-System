@@ -34,6 +34,6 @@ std::vector<_groupModel*> getGroups(GroupModel groupModel);
 void addModel(GroupModel groupModel,model model);
 void addGroup(GroupModel groupModel,GroupModel group2);
 void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int time);
-
+void fillALLbuff(std::vector<GroupModel>::iterator it, int objectCount);
 
 #endif //CG_19_20_GROUPMODEL_H

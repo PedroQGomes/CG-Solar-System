@@ -1,3 +1,12 @@
+
+#include<stdlib.h>
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glew.h>
+#include <GL/glut.h>
+#endif
+
 #include "headers.h"
 #include "parser.h"
 #include "model.h"
@@ -7,14 +16,8 @@
 #include "rotation.h"
 #include "translation.h"
 #include "operation3f.h"
-
-#include <vector>
 #include <math.h>
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
+
 
 
 //std::string path = "../../../Generated Files/";
@@ -196,7 +199,11 @@ int glMain(int argc, char**argv) {
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(1400, 1000);
 	glutCreateWindow("Engine");
-
+	GLenum err = glewInit();
+	if (GLEW_OK != err) {
+		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+	}
+	fillALLbuff(it, objectCount);
 	// Required callback registry 
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
@@ -229,11 +236,14 @@ int main(int argc, char **argv) {
 	
    
     tmp = parseXML("../solarSystem.xml");
+
 	std::vector<GroupModel> aux = getGroups(tmp);
 	
 	it = aux.begin();
 	objectCount = aux.size();
 	printf("%d\n", objectCount);
+	
+	 
 	glMain(0, argv);
 
 

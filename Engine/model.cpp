@@ -1,18 +1,22 @@
-#include "model.h"
+#include<stdlib.h>
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
+#include <GL/glew.h>
 #include <GL/glut.h>
 #endif
+#include "model.h"
+#include <cstdio>
 
 
-void addVertex(model * m, vertex v) {
-	m->vertexes.push_back(v);
+
+void addVertex(model * m, float f) {
+	m->vertexes.push_back(f);
 }
 
 
-vertex getVertex(model * m, int i) {
-	vertex v = m->vertexes.at(i);
+float getVertex(model * m, int i) {
+	float v = m->vertexes.at(i);
 	return v;
 }
 
@@ -20,31 +24,41 @@ int getSize(model m) {
 	return m.vertexes.size();
 }
 
-void drawModel(model m) {
-	vertex v1;
-	vertex v2;
-	vertex v3;
-	for(int i = 0; i < getSize(m); i++){
-		v1.x = m.vertexes.at(i).x;
-		v1.y = m.vertexes.at(i).y;
-		v1.z = m.vertexes.at(i).z;
-		i++;
-		v2.x = m.vertexes.at(i).x;
-		v2.y = m.vertexes.at(i).y;
-		v2.z = m.vertexes.at(i).z;
-		i++;
-		v3.x = m.vertexes.at(i).x;
-		v3.y = m.vertexes.at(i).y;
-		v3.z = m.vertexes.at(i).z;
-		
-
-		glBegin(GL_POLYGON);
-		glColor3f(1.0, 0.0, 0.0);
-		glVertex3f(v1.x, v1.y, v1.z);
-		glColor3f(0.0, 1.0, 0.0);
-		glVertex3f(v2.x, v2.y, v2.z);
-		glColor3f(0.0, 0.0, 1.0);
-		glVertex3f(v3.x, v3.y, v3.z);
-		glEnd();
+void drawModel(model * m) {
+	if (m) {
+		glBindBuffer(GL_ARRAY_BUFFER, m->vBuff[0]);
+		GLenum error = glGetError();
+		glVertexPointer(3, GL_FLOAT, 0, nullptr);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->iBuff[0]);
+		glDrawElements(GL_TRIANGLES, m->indices.size(), GL_UNSIGNED_INT, NULL);
+		if (GL_NO_ERROR != error) {
+			fprintf(stderr, "Error: %s\n", glewGetErrorString(error));
+		}
 	}
+	
 }
+
+void fillBuffers(model *m) {
+
+	if (m) {		
+		std::vector<float> vertexes = m->vertexes;
+		std::vector<unsigned int> indexes = m->indices;
+		float* vertex = &vertexes[0];
+		unsigned int* index = &indexes[0];
+		//printf("lol %u\n", indexes.at(1));
+		glGenBuffers(1, m->vBuff);
+		glBindBuffer(GL_ARRAY_BUFFER, m->vBuff[0]);
+		glBufferData(GL_ARRAY_BUFFER, m->vertexes.size() * sizeof(float), vertex, GL_STATIC_DRAW);
+
+
+		glGenBuffers(1, m->iBuff);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->iBuff[0]);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, m->indices.size() * sizeof(unsigned int), index, GL_STATIC_DRAW);
+		
+	}
+
+
+
+}
+
+

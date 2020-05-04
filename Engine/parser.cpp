@@ -29,7 +29,9 @@ model parseModel(std::string file) {
 			v.x = xF;
 			v.y = yF;
 			v.z = zF;
-			m.vertexes.push_back(v);
+			m.vertexes.push_back(xF);
+			m.vertexes.push_back(yF);
+			m.vertexes.push_back(zF);
 		}
 	}
 

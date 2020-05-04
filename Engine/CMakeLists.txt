@@ -5,7 +5,7 @@ PROJECT(engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} main.cpp model.cpp parser.h parser.cpp vertex.h vertex.cpp xmlParser.cpp xmlParser.h tinyxml2.h tinyxml2.cpp groupModel.cpp groupModel.h translation.h translation.cpp rotation.cpp rotation.h scale.cpp scale.h operation3f.cpp operation3f.h)
+add_executable(${PROJECT_NAME} main.cpp model.cpp parser.h parser.cpp vertex.h vertex.cpp xmlParser.cpp xmlParser.h tinyxml2.h tinyxml2.cpp groupModel.cpp groupModel.h translation.h translation.cpp rotation.cpp rotation.h scale.cpp scale.h operation3f.cpp operation3f.h catMR.cpp catMR.h)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
@@ -25,7 +25,7 @@ if  (WIN32)
 	endif (NOT EXISTS "${GLUT_DIR}/GL/glut.h" OR NOT EXISTS "${GLUT_DIR}/glut32.lib")	
 	include_directories(${GLUT_DIR})
 	link_directories(${GLUT_DIR})
-	target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_DIR}/glut32.lib )
+	target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_DIR}/glut32.lib ${GLUT_DIR}/glew32.lib )
 	if (EXISTS "${GLUT_DIR}/glut32.dll")
 		file(COPY ${GLUT_DIR}/glut32.dll DESTINATION ${CMAKE_BINARY_DIR})
 	endif(EXISTS "${GLUT_DIR}/glut32.dll")

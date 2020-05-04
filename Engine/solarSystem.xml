@@ -9,7 +9,8 @@
                 <model file="sphereVBO.3d"/>
             </models>
         </group>
-
+        <!--Cometa-->
+        
         <!--Mercury-->
         <group>
             <!--Actual Distance: 0.4 AU-->
@@ -26,7 +27,7 @@
 
             <scale X="1.22" Y="1.22"Z="1.22"/>
             <models>
-                <model file="sphere.3d"/>
+                <model file="sphereVBO.3d"/>
             </models>
         </group>
 
@@ -45,7 +46,7 @@
             </translate>
             <scale X="1.26" Y="1.26" Z="1.26"/>
             <models>
-                <model file="sphere.3d"/>
+                <model file="sphereVBO.3d"/>
             </models>
         </group>
 
@@ -64,7 +65,7 @@
             </translate>
             <scale X ="1.26" Y="1.26" Z="1.26"/>
             <models>
-                <model file="sphere.3d"/>
+                <model file="sphereVBO.3d"/>
             </models>
         </group>
 
@@ -83,7 +84,7 @@
             </translate>
             <scale X="1.23" Y="1.23" Z="1.23"/>
             <models>
-                <model file="sphere.3d"/>
+                <model file="sphereVBO.3d"/>
             </models>
         </group>
 
@@ -102,7 +103,7 @@
             </translate>
             <scale X="1.89" Y="1.89" Z="1.89"/>
             <models>
-                <model file="sphere.3d"/>
+                <model file="sphereVBO.3d"/>
             </models>
         </group>
 
@@ -121,7 +122,7 @@
             </translate>
             <scale X="1.78" Y="1.78" Z="1.78"/>
             <models>
-                <model file="sphere.3d"/>
+                <model file="sphereVBO.3d"/>
             </models>
         </group>
 
@@ -140,7 +141,7 @@
             </translate>
             <scale X="1.45" Y="1.45" Z="1.45"/>
             <models>
-                <model file="sphere.3d"/>
+                <model file="sphereVBO.3d"/>
             </models>
         </group>
 
@@ -159,7 +160,7 @@
             </translate>
             <scale  X="1.44" Y="1.44" Z="1.44"/>
             <models>
-                <model file="sphere.3d"/>
+                <model file="sphereVBO.3d"/>
             </models>
         </group>
         
