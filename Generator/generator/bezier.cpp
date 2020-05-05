@@ -1,106 +1,122 @@
-#include "bezier.h"
-#include "write.h"
-#include "point.h"
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include <cmath>
+#include "bezier.h"
+#include "write.h"
+#include "point.h"
+using namespace std;
 
 float bezierM[4][4] = { { -1.0f, 3.0f, -3.0f, 1.0f},
 					   { 3.0f, -6.0f, 3.0f, 0.0f},
 					   { -3.0f, 3.0f, 0.0f, 0.0f},
 					   { 1.0f, 0.0f, 0.0f, 0.0f} };
+struct bezier {
+	std::vector<Point> * pontos;
+	std::vector<int> * indices;
+	int numOfPatches;
+	int numOfCtrPoints;
+    
+};
 
-void multMatrixVector(float* m, float* v, float* res) {
+
+BezierPatch initParser(std::string file) {
+	printf("parsing bezier model\n");
+
+	std::string linha;
+	ifstream f(file);
+
+	if (f.fail()) printf("O ficheiro nao existe.\n");
+
+	BezierPatch bp = (BezierPatch)malloc(sizeof(struct bezier));
+	bp->indices = new vector<int>;
+	bp->pontos = new vector<Point>;
+	bp->numOfCtrPoints = 0;
+	bp->numOfPatches = 0;
+
+	int count = 0;
+	int patchcount = 0;
+	int pointcount = 0;
+	int tmpPatch = 0;
+	float tx, ty, tz;
+	tx = ty = tz = 0.0;
+	while (getline(f, linha)) {
+		
+		istringstream iss(linha);
+
+		if (count == 0) {
+			if (iss >> patchcount) {
+				bp->numOfPatches = patchcount;
+				count++;
+			}
+			else {
+				printf("Ficheiro mal formatado impossivel de dar parse\n");
+				break;
+			}
+		}
+		else if (count > 0 && count <= bp->numOfPatches) {
+			std::string token;
+			std::string stringNoStream = iss.str();
+			int index;
+			size_t  pos = 0;
+			while ((pos = stringNoStream.find(",")) != std::string::npos) {
+			
+				token = stringNoStream.substr(0, pos);
+				std::stringstream tmp(token);
+				tmp >> index;
+
+				printf("index: %d\n", index);
+				bp->indices->push_back(index);
+				stringNoStream.erase(0, pos + 1);
+			}
+			count++;
+		}
+		else if (count > 0 && count == bp->numOfPatches + 1) {
+			if (iss >> pointcount) {
+				bp->numOfCtrPoints = pointcount;
+				count++;
+			}
+			else {
+				printf("Ficheiro mal formatado sem pontos de controlo\n");
+				break;
+			}
+		}else if (count > 0 && count > bp->numOfPatches + 1) {
+			std::string token;
+			std::string stringNoStream = iss.str();
+			size_t  pos = 0;
+			float pontos[3];
+			int aux = 0;
+			while ((pos = stringNoStream.find(",")) != std::string::npos) {
+				token = stringNoStream.substr(0, pos);
+				std::stringstream tmp(token);
+				tmp >> pontos[aux++];
+				stringNoStream.erase(0, pos + 1);
+			}
+			bp->pontos->push_back(newPoint(pontos[0], pontos[1], pontos[2]));
+			count++;
+		}
+	}
+	//printf("\n\n\n");
+	//printf("numero de patches %d\n", bp->numOfPatches);
+
+	//printf("indices size %d\n",(*(bp->indices)).size());
+	//printf("numero de pontos %d\n", bp->numOfCtrPoints);
+	//printf("pontos size %d\n", (*(bp->pontos)).size());
+
+
+	return bp;
+
+}
+
+void multMatrix(float* m, float* v, float* r) {
 
 	for (int j = 0; j < 4; ++j) {
-		res[j] = 0;
+		r[j] = 0;
 		for (int k = 0; k < 4; ++k) {
-			res[j] += v[k] * m[j * 4 + k];
+			r[j] += v[k] * m[j * 4 + k];
 		}
 	}
-}
-
-void multVectorMatrix(float* v, float* m, float* res) {
-	for (int i = 0; i < 4; ++i) {
-		res[i] = 0;
-		for (int j = 0; j < 4; ++j) {
-			res[i] += v[j] * m[j * 4 + i];
-		}
-	}
-}
-
-
-int bezierParser(std::string fileName, std::vector<Point>* controlPoints, std::vector<int>* indices) {
-	std::ifstream file(fileName);
-	std::string line;
-
-	int numPatches = 0;
-	int numControlPoints = 0;
-	int current_line = 0;
-	if (file.fail()) printf("O ficheiro nao existe.\n");
-	while (std::getline(file, line)) {
-		std::istringstream stringStream(line);
-		std::string tmp;
-		printf("AQUIASND ASD %s\n", tmp);
-		if (current_line == 0) {
-			if (!(stringStream >> numPatches)) {
-				fprintf(stderr, "PARSING FAILURE! Could not retrieve number of patches!");
-				return 1;
-			}
-		}
-		// parse patches
-		else if (current_line > 0 && current_line <= numPatches) {
-
-			unsigned long pos = 0;
-			std::string token;
-			std::string stringNoStream = stringStream.str();
-			int index;
-			while ((pos = stringNoStream.find(',')) != std::string::npos) {
-				token = stringNoStream.substr(0, pos);
-				std::stringstream auxStream(token);
-				auxStream >> index;
-				(*indices).push_back(index);
-				stringNoStream.erase(0, pos + 1);
-			}
-			std::stringstream auxStream(stringNoStream);
-			auxStream >> index;
-			(*indices).push_back(index);
-
-		}
-		// parse num of control points
-		else if (current_line == numPatches + 1) {
-			if (!(stringStream >> numControlPoints)) {
-				fprintf(stderr, "PARSING FAILURE! Could not retrieve number of control points!");
-				return 1;
-			}
-		}
-		// parse control points
-		else if (current_line < numPatches + numControlPoints + 2) {
-			unsigned long pos = 0;
-			std::string token;
-			std::string stringNoStream = stringStream.str();
-			float axis[3];
-			int i = 0;
-			while ((pos = stringNoStream.find(',')) != std::string::npos) {
-				token = stringNoStream.substr(0, pos);
-				std::stringstream auxStream(token);
-				auxStream >> axis[i];
-				stringNoStream.erase(0, pos + 1);
-				i++;
-			}
-			std::stringstream auxStream(stringNoStream);
-			auxStream >> axis[2];
-			Point v = newPoint();
-			setX(v, axis[0]);
-			setY(v, axis[1]);
-			setZ(v, axis[2]);
-			(*controlPoints).push_back(v);
-		}
-		current_line++;
-	}
-	printf("PARSER ACABOU\n");
-	return 0;
 }
 
 void getBezier(float u, float v, float** pX, float** pY, float** pZ, float* coords) {
@@ -110,17 +126,17 @@ void getBezier(float u, float v, float** pX, float** pY, float** pZ, float* coor
 	// B(u,v) = U * M * P(x,y,z) * M_t * V
 	// M_t = M (symmetric matrix)
 	float MV[4];
-	multMatrixVector(*bezierM, V, MV);
+	multMatrix(*bezierM, V, MV);
 
 	float PMV[3][4];
-	multMatrixVector((float*)pX, MV, PMV[0]);
-	multMatrixVector((float*)pY, MV, PMV[1]);
-	multMatrixVector((float*)pZ, MV, PMV[2]);
+	multMatrix((float*)pX, MV, PMV[0]);
+	multMatrix((float*)pY, MV, PMV[1]);
+	multMatrix((float*)pZ, MV, PMV[2]);
 
 	float MPMV[3][4];
-	multMatrixVector(*bezierM, PMV[0], MPMV[0]);
-	multMatrixVector(*bezierM, PMV[1], MPMV[1]);
-	multMatrixVector(*bezierM, PMV[2], MPMV[2]);
+	multMatrix(*bezierM, PMV[0], MPMV[0]);
+	multMatrix(*bezierM, PMV[1], MPMV[1]);
+	multMatrix(*bezierM, PMV[2], MPMV[2]);
 
 	for (int i = 0; i < 3; i++) {
 		coords[i] = 0;
@@ -130,61 +146,68 @@ void getBezier(float u, float v, float** pX, float** pY, float** pZ, float* coor
 	}
 }
 
-int mkBezier(std::vector<Point>* controlPoints, std::vector<int>* indices, int tessellation, std::string file) {
+
+
+void mkBezierModel(BezierPatch bp, int tess, std::string file) {
 
 	std::ofstream f;
 	f.open(file);
+
 	if (!f.good()) {
-		printf("DEU MERDA\n");
-
+		printf("File not found\n");
 	}
+	
 
-	// each vertex has 3 components, 16 floats per patch
 	float pX[4][4];
 	float pY[4][4];
 	float pZ[4][4];
-
-	// 16 vertexes for each patch
-	for (int i = 0; i < (*indices).size(); i += 16) {
-
+	
+	for (int i = 0; i < (*(bp->indices)).size(); i += 16) {
 		// copy 16 vertexes to P matrix
 		for (int a = 0; a < 4; a++) {
+			
 			for (int b = 0; b < 4; b++) {
+				
 				// index of index vector (makes lots of sense, I know)
-				int index = (*indices).at(i + a * 4 + b);
-				pX[a][b] = getX((*controlPoints).at(index));
-				pY[a][b] = getY((*controlPoints).at(index));
-				pZ[a][b] = getZ((*controlPoints).at(index));
+				int res = i + a * 4 + b;
+				int index = (*(bp->indices)).at(res);
+				
+				pX[a][b] = getX((*(bp->pontos)).at(index));
+				
+				pY[a][b] = getY((*(bp->pontos)).at(index));
+				
+				pZ[a][b] = getZ((*(bp->pontos)).at(index));
+				
 			}
 		}
 
 		// until tesselation + 1 to avoid ifs when last point
-		for (int u = 0; u <= tessellation; u++) {
+		for (int u = 0; u <= tess; u++) {
 
 			float coordsP[3];
 
 			// same as comment b4
-			for (int v = 0; v <= tessellation; v++) {
+			for (int v = 0; v <= tess; v++) {
 
-				getBezier(u / (float)tessellation, v / (float)tessellation, (float**)pX, (float**)pY, (float**)pZ, coordsP);
+				getBezier(u / (float)tess, v / (float)tess, (float**)pX, (float**)pY, (float**)pZ, coordsP);
 				writePointToF(coordsP[0], coordsP[1], coordsP[2], f);
 			}
 		}
 	}
 
 	// indexes
-	int indicesPerPatch = (tessellation + 1) * (tessellation + 1);
-	for (int i = 0; i < (*indices).size(); i += 16) {
-
+	int indicesPerPatch = (tess + 1) * (tess + 1); 
+	for (int i = 0; i < (*(bp->indices)).size(); i += 16) {
+		
 		int currentPatch = i / 16;
 
-		for (int u = 0; u < tessellation; u++) {
-			for (int v = 0; v < tessellation; v++) {
+		for (int u = 0; u < tess; u++) {
+			for (int v = 0; v < tess; v++) {
 				// A -- B
 				// C -- D
-				int indexA = currentPatch * indicesPerPatch + ((tessellation + 1) * u) + v;
+				int indexA = currentPatch * indicesPerPatch + ((tess + 1) * u) + v;
 				int indexB = indexA + 1;
-				int indexC = currentPatch * indicesPerPatch + (tessellation + 1) * (u + 1) + v;
+				int indexC = currentPatch * indicesPerPatch + (tess + 1) * (u + 1) + v;
 				int indexD = indexC + 1;
 
 				writeIntToFile(indexA, f);
@@ -198,6 +221,6 @@ int mkBezier(std::vector<Point>* controlPoints, std::vector<int>* indices, int t
 			}
 		}
 	}
-	printf("MK BEZIER ACABOU\n");
-	return 0;
 }
+
+

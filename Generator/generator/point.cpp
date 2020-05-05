@@ -17,6 +17,17 @@ Point newPoint() {
     return v;
 }
 
+Point newPoint(float x, float y,float z) {
+    Point v = (Point)malloc(sizeof(struct point));
+    if (!v)
+        return NULL;
+    v->x = x;
+    v->y = y;
+    v->z = z;
+    return v;
+}
+
+
 void freePoint(Point v) {
     if (v)
         free(v);

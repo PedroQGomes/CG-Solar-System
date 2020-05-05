@@ -5,9 +5,10 @@
 #include <string>
 #include "point.h"
 
+typedef struct bezier* BezierPatch;
 
-int bezierParser(std::string fileName, std::vector<Point>* controlPoints, std::vector<int>* indices);
+BezierPatch initParser(std::string file);
+void mkBezierModel(BezierPatch bp, int tess, std::string file);
 
-int mkBezier(std::vector<Point>* controlPoints, std::vector<int>* indices, int tessellation, std::string file);
 
 #endif BEZIER_H

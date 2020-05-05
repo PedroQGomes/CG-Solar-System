@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream> 
 #include <string>
+#include <fstream>
+#include <sstream>
 #include "parser.h"
 
 int ts = 0;
@@ -17,7 +19,8 @@ model parseModel(std::string file) {
 	real_path = "../../Generated/" + file;
 	std::string linha;
 	ifstream f (real_path);
-	if (f.fail()) printf("O ficheiro nao existe.\n");
+	if (f.fail()) printf("Erro ao abrir o bezier.patch\n");
+
 	while (getline(f,linha)) {
 		istringstream iss(linha);
 		ts++;

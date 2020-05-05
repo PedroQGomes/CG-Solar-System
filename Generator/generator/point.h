@@ -6,6 +6,7 @@ typedef struct point* Point;
 
 
 Point newPoint();
+Point newPoint(float x, float y, float z);
 
 void freePoint(Point v);
 

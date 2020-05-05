@@ -94,12 +94,12 @@ int main(int argc, char** argv)
 	}
 	else if (type.compare("bezier") == 0) {
 		printf("It's a bezier model!\n");
-		std::vector<Point>* controlPoints = new std::vector<Point>();
-		auto* indices = new std::vector<int>();
-		std::string real_path = path + "teapot.patch";
-		int error = bezierParser(real_path , controlPoints, indices);
-		
-		error = mkBezier(controlPoints, indices, atoi(argv[3]), real_path);
+		std::string real_path = path + argv[2];
+		BezierPatch bp = initParser(real_path);
+		//std::cout << real_path;
+		std::string real_path2 = path + argv[4];
+		mkBezierModel(bp, atoi(argv[3]), real_path2);
+
 
 	}else printf("It's..... nothing.\n");
     

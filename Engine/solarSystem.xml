@@ -22,9 +22,9 @@
                 <point X = "35.355" Y= "0" Z = "35.355"/>
                 <scale X = "35.355" Y = "0" Z = "35.355"/>
             </translate>
-            <scale X="1.16" Y="1.16" Z="1.16"/>    
+            <scale X="1.016" Y="1.016" Z="1.016"/>    
             <models>
-                <model file = "box.3d"/>
+                <model file = "teapot.3d"/>
             </models>
         </group>
         <!--Mercury-->
