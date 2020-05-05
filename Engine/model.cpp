@@ -8,7 +8,7 @@
 #include "model.h"
 #include <cstdio>
 
-
+int color = 0;
 
 void addVertex(model * m, float f) {
 	m->vertexes.push_back(f);
@@ -26,7 +26,8 @@ int getSize(model m) {
 
 void drawModel(model * m) {
 	if (m) {
-		
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		//glcolor3f(0.0,0.0,0.0);
 		glBindBuffer(GL_ARRAY_BUFFER, m->vBuff[0]);
 		GLenum error = glGetError();
 		if (GL_NO_ERROR != error) {
@@ -35,7 +36,8 @@ void drawModel(model * m) {
 		glVertexPointer(3, GL_FLOAT, 0, nullptr);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->iBuff[0]);
 		glDrawElements(GL_TRIANGLES, m->indices.size(), GL_UNSIGNED_INT, NULL);
-	}
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	} 
 	
 }
 

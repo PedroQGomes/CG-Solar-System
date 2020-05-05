@@ -85,6 +85,13 @@
             <models>
                 <model file="sphereVBO.3d"/>
             </models>
+            <group>
+                  <translate Y = "3.0"/>
+                  <scale X="0.322" Y="0.322" Z="0.322"/>
+                  <models>
+                      <model file="sphereVBO.3d"/>
+                  </models>
+            </group>
         </group>
 
         <!--Mars-->

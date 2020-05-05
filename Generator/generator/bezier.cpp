@@ -12,6 +12,8 @@ float bezierM[4][4] = { { -1.0f, 3.0f, -3.0f, 1.0f},
 					   { 3.0f, -6.0f, 3.0f, 0.0f},
 					   { -3.0f, 3.0f, 0.0f, 0.0f},
 					   { 1.0f, 0.0f, 0.0f, 0.0f} };
+
+
 struct bezier {
 	std::vector<Point> * pontos;
 	std::vector<int> * indices;
@@ -70,6 +72,9 @@ BezierPatch initParser(std::string file) {
 				bp->indices->push_back(index);
 				stringNoStream.erase(0, pos + 1);
 			}
+			std::stringstream tmpStream(stringNoStream);
+			tmpStream >> index;
+			bp->indices->push_back(index);
 			count++;
 		}
 		else if (count > 0 && count == bp->numOfPatches + 1) {
@@ -93,6 +98,8 @@ BezierPatch initParser(std::string file) {
 				tmp >> pontos[aux++];
 				stringNoStream.erase(0, pos + 1);
 			}
+			std::stringstream tmpStream(stringNoStream);
+			tmpStream >> pontos[2];
 			bp->pontos->push_back(newPoint(pontos[0], pontos[1], pontos[2]));
 			count++;
 		}
@@ -163,12 +170,12 @@ void mkBezierModel(BezierPatch bp, int tess, std::string file) {
 	float pZ[4][4];
 	
 	for (int i = 0; i < (*(bp->indices)).size(); i += 16) {
-		// copy 16 vertexes to P matrix
+		
 		for (int a = 0; a < 4; a++) {
 			
 			for (int b = 0; b < 4; b++) {
 				
-				// index of index vector (makes lots of sense, I know)
+				
 				int res = i + a * 4 + b;
 				int index = (*(bp->indices)).at(res);
 				
@@ -181,12 +188,12 @@ void mkBezierModel(BezierPatch bp, int tess, std::string file) {
 			}
 		}
 
-		// until tesselation + 1 to avoid ifs when last point
+		
 		for (int u = 0; u <= tess; u++) {
 
 			float coordsP[3];
 
-			// same as comment b4
+			
 			for (int v = 0; v <= tess; v++) {
 
 				getBezier(u / (float)tess, v / (float)tess, (float**)pX, (float**)pY, (float**)pZ, coordsP);
@@ -195,7 +202,7 @@ void mkBezierModel(BezierPatch bp, int tess, std::string file) {
 		}
 	}
 
-	// indexes
+	
 	int indicesPerPatch = (tess + 1) * (tess + 1); 
 	for (int i = 0; i < (*(bp->indices)).size(); i += 16) {
 		

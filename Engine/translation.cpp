@@ -45,8 +45,12 @@ void getCurvePoint(Translation trans, float gt, float* pos, float* deriv) {
 }
 
 void drawTranslation(Translation t,int timestp) {
+	if(t && t->pontos->size() == 0){
 
-	if (t) {
+		glTranslatef(t->o->x, t->o->y, t->o->z);
+
+
+	}else if (t) {
 		float pos[3];
 		float deriv[3];
 

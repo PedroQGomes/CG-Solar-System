@@ -42,8 +42,6 @@ int main(int argc, char** argv)
 	
 
 	if (type.compare("plane") == 0 && argc == PLANE_ARGS) {
-
-			
 			printf("It's a plane!\n");
 			float size = std::stof(argv[2]);
 			std::string real_path = path + argv[3];

@@ -62,6 +62,7 @@ std::vector<_groupModel*> getGroups(GroupModel groupModel) {
 void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int time) {
 
  
+
     for (int i = 0; i < objectCount; i++) {
         glPushMatrix();
      
@@ -69,14 +70,6 @@ void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int tim
         float stmpy = scaleGetY((*it)->scale);
         float stmpz = scaleGetZ((*it)->scale);
 
-        float a = rotationGetX((*it)->rotation);
-        float b = rotationGetY((*it)->rotation);
-        float c = rotationGetZ((*it)->rotation);
-        float d = rotationGetAngle((*it)->rotation);
-        
-        
-
-        float res = 360*(time / d);
         
         drawTranslation((*it)->translation, time);
         //glRotatef(time,0,1,0);
@@ -84,6 +77,18 @@ void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int tim
         drawRotation((*it)->rotation,time);
         glScalef(stmpx, stmpy, stmpz);
         drawModel(&((*it)->models->front()));
+
+        for (int j = 0; j < (*it)->groups->size(); j++) {
+            drawTranslation((*it)->groups->at(j)->translation, time);
+            float stmpx = scaleGetX((*it)->groups->at(j)->scale);
+            float stmpy = scaleGetY((*it)->groups->at(j)->scale);
+            float stmpz = scaleGetZ((*it)->groups->at(j)->scale);
+            glScalef(stmpx, stmpy, stmpz);
+
+            drawModel(&(*it)->groups->at(j)->models->front());
+
+        }
+
         glPopMatrix();
         it++;
 
@@ -100,6 +105,14 @@ void fillALLbuff(std::vector<GroupModel>::iterator it, int objectCount) {
     for (int i = 0; i < objectCount; i++) {
         glColor3b(0.0f, 0.0f, 0.0f);
         fillBuffers(&(*it)->models->front());
+
+       
+        for(int j = 0; j < (*it)->groups->size();j++){
+        
+            fillBuffers(&(*it)->groups->at(j)->models->front());
+
+        }
+
 
         it++;
 
