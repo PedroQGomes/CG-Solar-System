@@ -13,15 +13,16 @@ int plane(float size, std::string file) {
 	z = size / 2;
 
 	printf("Writting\n");
-	//10 Triangulo
-	writePointToF(-x, 0.0, z, f);
-	writePointToF( x, 0.0, z, f);
-	writePointToF( x, 0.0,-z, f);
+	writePointToF(x, 0, z, f);
+	writePointToF(-x, 0, -z, f);
+	writePointToF(-x, 0, z, f);
+	writePointToF(x, 0, -z, f);
 
-	//20 Triangulo
-	writePointToF( x, 0.0,-z, f);
-	writePointToF(-x, 0.0,-z, f);
-	writePointToF(-x, 0.0, z, f);
-
+	writeIntToFile(0, f);
+	writeIntToFile(1, f);
+	writeIntToFile(2, f);
+	writeIntToFile(1, f);
+	writeIntToFile(0, f);
+	writeIntToFile(3, f);
 	return 1;
 }

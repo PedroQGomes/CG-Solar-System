@@ -1,5 +1,64 @@
-#include <cmath>
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <stdio.h>
+#include <vector>
 #include "cone.h"
+
+
+int coneVBO(float radius, float height, int slices, int stacks, std::string file) {
+	std::ofstream f(file);
+
+
+	if(slices < 0 || stacks < 0)
+	return 1;
+
+	float angle = (float) (2 * M_PI) / slices;
+	float division = height / stacks;
+	float baseY = height / 2;
+	writePointToF(0.0f, 0.0f - baseY, 0.0f, f);
+	for (int i = 0; i <= slices; i++) {
+		for (int j = 0; j < stacks + 1; j++) {
+			float div = (float) j / stacks;
+			float radiusD = (float) ((1.0 - div)) * radius;
+			
+			// Triangulo [x1,z1,y]
+			float x1 = radiusD * cos(i * angle);
+			float y1 = j * division - baseY;
+			float z1 = radiusD * sin(i * angle);
+			writePointToF(x1, y1, z1, f);
+		}
+	}
+
+	int a1,a2,a3,i1, i2, i3, i4, k;
+	int auxstacks = stacks + 1;
+
+	for (int i = 0; i < auxstacks; i++) {
+		if (i == slices)
+			k = 0;
+		else k = i;
+
+		writeIntToFile(0, f);
+		writeIntToFile(auxstacks * k + 1, f);
+		writeIntToFile(auxstacks * (k + 1) + 1, f);
+
+		for (int j = 1; j < auxstacks; j++) {
+			i1 = auxstacks * k + j;
+			i2 = auxstacks * k + j + 1;
+			i3 = auxstacks * (k + 1) + j;
+			i4 = auxstacks * (k + 1) + j + 1;
+
+			writeIntToFile(i1, f);
+			writeIntToFile(i2, f);
+			writeIntToFile(i3, f);
+			writeIntToFile(i3, f);
+			writeIntToFile(i2, f);
+			writeIntToFile(i4, f);
+		}
+	}
+	
+
+	return 0;
+}
 
 int cone(float radius, float height, int slices, int stacks, std::string file) {
 
@@ -70,3 +129,5 @@ int coneUpperBody(float radius, float height, int slices, int stacks, std::strin
 
 	return 1;
 }
+
+
