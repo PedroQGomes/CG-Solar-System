@@ -16,6 +16,7 @@
 #include "rotation.h"
 #include "translation.h"
 #include "operation3f.h"
+#include "lights.h"
 #include <math.h>
 
 
@@ -226,8 +227,8 @@ int glMain(int argc, char**argv) {
 
 int main(int argc, char **argv) {
 	
-   
-    tmp = parseXML("../solarSystem.xml");
+	std::vector<Light> lightsVec;
+    tmp = parseXML("../solarSystem.xml", &lightsVec);
 
 	std::vector<GroupModel> aux = getGroups(tmp);
 	

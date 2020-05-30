@@ -42,12 +42,14 @@ int main(int argc, char** argv)
 	
 
 	if (type.compare("plane") == 0 && argc == PLANE_ARGS) {
+		//exemplo plane 6 plano.3d
 			printf("It's a plane!\n");
 			float size = std::stof(argv[2]);
 			std::string real_path = path + argv[3];
 			plane(size, real_path);
 	}
 	else if (type.compare("box") == 0) {
+		//exemplo box 4 4 4 2 box.3d
 		printf("It's a box!\n");
 		float x = std::stof(argv[2]);
         float y = std::stof(argv[3]);
@@ -64,7 +66,7 @@ int main(int argc, char** argv)
         box(x,y,z,s,real_path);
 	}
 	else if(type.compare("circle") == 0){
-	    // exmplo circle 2 20 circle.xml
+	    // exemplo circle 2 20 circle.3d
 		printf("It's a circle!\n");
 		float radius = std::stof(argv[2]);
 		int slices = std::stof(argv[3]);;
@@ -72,14 +74,14 @@ int main(int argc, char** argv)
 		circle(radius, slices, real_path);
 	}	
 	else if(type.compare("cone") == 0){
-	    // exmplo cone 2 3 20 20 cone.xml
+	    // exmplo cone 2 3 20 20 cone.3d
 		printf("It's a cone!\n");
 		float radius = std::stof(argv[2]);
 		float height = std::stof(argv[3]);
 		int slices = std::stof(argv[4]);
 		int stacks = std::stof(argv[5]);
 		std::string real_path = path + argv[6];
-		cone(radius, height, slices, stacks, real_path);
+		coneVBO(radius, height, slices, stacks, real_path);
 	}
 	else if (type.compare("sphere") == 0) {
 		printf("It's a sphere!\n");

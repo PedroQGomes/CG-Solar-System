@@ -156,16 +156,16 @@ void parseGroups(XMLNode* group,GroupModel groupModel) {
     }
 }
 
-GroupModel parseXML(std::string path,std::vector<Light> * lightsVec) { 
+GroupModel parseXML(std::string path, std::vector<Light>* lightsVec) {
     XMLDocument doc;
     XMLError xmlError = doc.LoadFile(path.c_str());
-    cout << doc.ErrorStr() << endl ;
-    if(xmlError != XML_SUCCESS) {
+    cout << doc.ErrorStr() << endl;
+    if (xmlError != XML_SUCCESS) {
         cout << "error" << endl;
-    } else {
+    }
+    else {
         cout << "load Successful" << endl;
     }
-
     XMLNode* root = doc.FirstChildElement("scene");
 
     if (root == nullptr) {
@@ -179,6 +179,7 @@ GroupModel parseXML(std::string path,std::vector<Light> * lightsVec) {
             cout << "Numero maximo de luzes excedido" << endl;
             return nullptr;
         }
+    }
     XMLElement* group = root->FirstChildElement("group");
     GroupModel headGroup = newGroupModel();
     while (group != nullptr) {

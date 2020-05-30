@@ -11,6 +11,17 @@ int writeToF(char * text, std::ofstream& file) {
 	return 1;
 }
 
+void write2IntToFile(float i, float j, std::ofstream& file) {
+	if (!file.good()) {
+		printf("NULL File");
+	
+	}
+	file << i << " " << j << "\n";
+
+
+}
+
+
 int writeIntToF(int i, FILE* file) {
 	if (file == NULL) {
 		printf("Error!");

@@ -24,3 +24,4 @@ FILE* openFile(char* fname);
 int writePointToFile(float x, float y, float z, FILE* file);
 int writeIntToF(int i, FILE* file);
 int writeIntToFile(int i, std::ofstream& file);
+void write2IntToFile(float i, float j, std::ofstream& file);

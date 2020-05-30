@@ -1,6 +1,7 @@
 #include "sphere.h"
 #include <cmath>
 #include "point.h"
+#include <vector>
 
 int sphere(float radius, int slices, int stacks, std::string file) {
 
@@ -10,6 +11,8 @@ int sphere(float radius, int slices, int stacks, std::string file) {
 	float angleH = (2 * PI) / slices;
 	float angleV = PI / stacks;
 	float stackHeight = radius*2/stacks;
+
+   
 	
 	for (float i = 0; i < stacks; i++) {
 		h1 = sin(angleV * i);
@@ -41,51 +44,83 @@ int sphere(float radius, int slices, int stacks, std::string file) {
 
 }
 
-int sphereVBO(float rad, int slices, int stacks, std::string file) {
+int sphereVBO(float radius, int slices, int stacks, std::string file) {
     std::ofstream f;
     f.open(file);
     
-    float baseAlpha = static_cast<float>((PI * 2) / slices);
-    float baseBeta = static_cast<float>((PI) / stacks);
+    float alpha0 = static_cast<float>((PI * 2) / slices);
+    float beta0 = static_cast<float>((PI) / stacks);
     
+    std::vector<Point> normais;
+    std::vector<Point> texturas;
+
     for (int stack = 0; stack <= stacks; stack++) {
 
-        float beta = stack * baseBeta; 
+        float beta = stack * beta0;
 
         for (int slice = 0; slice <= slices; slice++) {
 
-            float alpha = slice * baseAlpha; 
+            float alpha = slice * alpha0;
 
-            float x, y, z;
+            float tx, ty, tz;
 
-            x = rad * sin(beta) * cos(alpha);
-            y = rad * cos(beta);
-            z = rad * sin(beta) * sin(alpha);
+            tx = radius * sin(beta) * cos(alpha);
+            ty = radius * cos(beta);
+            tz = radius * sin(beta) * sin(alpha);
 
-            writePointToF(x, y, z, f);
+            writePointToF(tx, ty, tz, f);
+
+
+            tx /= radius;
+            ty /= radius;
+            tz /= radius;
+
+            Point p = newPoint();
+            setX(p, tx);
+            setY(p, ty);
+            setZ(p, tz);
+            normais.push_back(p);
+
+            tx = (slices - (float)slice) / slices;
+            ty = (stacks - (float)stack) / stacks;
+            Point n = newPoint();
+            setX(n, tx);
+            setY(n, ty);
+            texturas.push_back(n);
+
+
+
+
         }
     }
     //printf("slices %d\n",slices);
     for (int stack = 0; stack < stacks; stack++) {
         for (int slice = 0; slice < slices; slice++) {
-            // A --- C
-            // B --- D
-            int indexA, indexB, indexC, indexD;
-            indexA = stack * (slices + 1) + slice;
-            indexB = (stack + 1) * (slices + 1) + slice;
-            indexC = indexA + 1;
-            indexD = indexB + 1;
+            int A, B, C, D;
+            A = stack * (slices + 1) + slice;
+            B = (stack + 1) * (slices + 1) + slice;
+            C = A + 1;
+            D = B + 1;
             //printf("aqui\n");
-            writeIntToFile(indexA, f);
-            writeIntToFile(indexB, f);
-            writeIntToFile(indexC, f);
+            writeIntToFile(A, f);
+            writeIntToFile(B, f);
+            writeIntToFile(C, f);
 
-            writeIntToFile(indexB, f);
-            writeIntToFile(indexD, f);
-            writeIntToFile(indexC, f);
+            writeIntToFile(B, f);
+            writeIntToFile(D, f);
+            writeIntToFile(C, f);
         }
     }
 
+    for (int i = 0; i < normais.size(); i++) {
+        writePointToF(getX(normais.at(i)), getY(normais.at(i)), getZ(normais.at(i)), f);
+
+    }
+
+    for (int i = 0; i < texturas.size(); i++) {
+        write2IntToFile(getX(normais.at(i)), getY(normais.at(i)), f);
+
+    }
 
     return 0;
 
