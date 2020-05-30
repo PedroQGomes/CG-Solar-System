@@ -8,7 +8,7 @@
 #include "translation.h"
 #include "scale.h"
 #include "rotation.h"
-
+#include "lights.h"
 using namespace tinyxml2;
 using namespace std;
 
@@ -57,6 +57,64 @@ void parseTranslation(XMLNode* translation,GroupModel groupModel) {
 }
 
 
+int parseLights(XMLNode* lights, std::vector<Light>* lightsVec) {
+    XMLElement* light = lights->FirstChildElement("light");
+
+    int currentLight = 0;
+    while (light != NULL) {
+        const char* type = light->Attribute("type");
+
+        float pos[4] = { 0.0f, 0.0f, 0.0f, 1.0f }; // default is a point
+        float amb[4] = { 0.0f, 0.0f, 0.0f, 1.0f }; // opengl default
+        float diff[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; //opengl default
+        float spec[4] = { 1.0f, 1.0f, 1.0f, 1.0f }; // opengl default
+        float spotDir[3] = { 0.0f, 0.0f, -1.0f }; // opengl default
+        float spotExp = 0.0f; // opengl default, uniform light dist
+        float spotCut = 180.0f; // opengl default, uniform light dist
+
+        light->QueryAttribute("posX", pos);
+        light->QueryAttribute("posY", pos + 1);
+        light->QueryAttribute("posZ", pos + 2);
+        // if directional, it's vector
+        if (strcmp(type, "DIRECTIONAL") == 0)
+            pos[3] = 0.0f;
+
+        light->QueryAttribute("ambR", amb);
+        light->QueryAttribute("ambG", amb + 1);
+        light->QueryAttribute("ambB", amb + 2);
+
+        light->QueryAttribute("diffR", diff);
+        light->QueryAttribute("diffG", diff + 1);
+        light->QueryAttribute("diffB", diff + 2);
+
+        light->QueryAttribute("specR", spec);
+        light->QueryAttribute("specG", spec + 1);
+        light->QueryAttribute("specB", spec + 2);
+
+        light->QueryAttribute("dX", spotDir);
+        light->QueryAttribute("dY", spotDir + 1);
+        light->QueryAttribute("dZ", spotDir + 2);
+
+        light->QueryAttribute("exp", &spotExp);
+        light->QueryAttribute("cut", &spotCut);
+
+        GLenum i = GL_LIGHT0 + currentLight;
+        Light l = newLight(i, pos, amb, diff, spec, spotDir, spotExp, spotCut);
+        lightsVec->push_back(l);
+        currentLight++;
+
+
+        light = light->NextSiblingElement("light");
+    }
+
+    if (currentLight < 9)
+        return 0;
+    else
+        return 1;
+
+
+}
+
 
 void parseScale(XMLNode* scale,GroupModel groupModel) {
     XMLElement* e = (XMLElement*) scale;
@@ -98,7 +156,7 @@ void parseGroups(XMLNode* group,GroupModel groupModel) {
     }
 }
 
-GroupModel parseXML(std::string path) {
+GroupModel parseXML(std::string path,std::vector<Light> * lightsVec) { 
     XMLDocument doc;
     XMLError xmlError = doc.LoadFile(path.c_str());
     cout << doc.ErrorStr() << endl ;
@@ -114,9 +172,23 @@ GroupModel parseXML(std::string path) {
         cout << "no root" << endl;
     }
 
-    GroupModel groupModel = newGroupModel();
-    parseGroups(root,groupModel);
-    return groupModel;
+    XMLElement* light = root->FirstChildElement("lights");
+    if (light != nullptr) {
+        int erro = parseLights(light, lightsVec);
+        if (erro) {
+            cout << "Numero maximo de luzes excedido" << endl;
+            return nullptr;
+        }
+    XMLElement* group = root->FirstChildElement("group");
+    GroupModel headGroup = newGroupModel();
+    while (group != nullptr) {
+        GroupModel groupModel = newGroupModel();
+        addGroup(headGroup , groupModel);
+        parseGroups(group, groupModel);
+        group = group->NextSiblingElement("group");
+    }
+   
+    return headGroup;
 }
 
 
