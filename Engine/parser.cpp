@@ -8,41 +8,54 @@
 
 int ts = 0;
 using namespace std;
-model parseModel(std::string file) {
+int parseModel(Model m , std::string file) {
 
 	printf("\nParsing\n");
-
-	model m;
+	if (m == nullptr) {
+		return 2;
+	}
 	float xF, yF, zF;
-	vertex v;
 	std::string real_path;
 	real_path = "../../Generated/" + file;
 	std::string linha;
 	ifstream f (real_path);
-	if (f.fail()) printf("Erro ao abrir o bezier.patch\n");
-
+	if (f.fail()) printf("Erro ao abrir %s\n",file.c_str());
+	bool change = false;
+	bool firstIt = true;
 	while (getline(f,linha)) {
 		istringstream iss(linha);
 		ts++;
 		if (!(iss >> xF >> yF >> zF)) {
-			unsigned int s = xF;
-			//printf("Linha %d  X %u\n", ts , s); 
-			m.indices.push_back(s);
+			if (firstIt) firstIt = false;
+			if (change) {
+				addTexture(m, xF);
+				addTexture(m, yF);
+			}
+			else {
+				unsigned int s = xF;
+				addIndice(m, s);
+			}
 		}
-		else {
-			v.x = xF;
-			v.y = yF;
-			v.z = zF;
-			m.vertexes.push_back(xF);
-			m.vertexes.push_back(yF);
-			m.vertexes.push_back(zF);
+		else { 
+			if (!firstIt && !change) change = true;
+			if (change) {
+				addNormal(m, xF);
+				addNormal(m, yF);
+				addNormal(m, zF);
+			}
+			else {
+				addVertices(m, xF);
+				addVertices(m, yF);
+				addVertices(m, zF);
+			}
+			
 		}
 	}
 
 	
 
-	printf("tamanho %d\n", m.vertexes.size());
+	printf("tamanho %d\n", (getVertices(m))->size());
 	
 	printf("finished parsing\n");
-	return m;
+	return 0;
 	}

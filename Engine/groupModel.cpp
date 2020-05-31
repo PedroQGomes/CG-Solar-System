@@ -8,7 +8,7 @@ GroupModel newGroupModel() {
     GroupModel r = (GroupModel)(malloc(sizeof(struct _groupModel)));
     r->scale = nullptr;
     r->groups = new std::vector<GroupModel>();
-    r->models = new std::vector<model>();
+    r->models = new std::vector<Model>();
     r->rotation = nullptr;
     r->translation = nullptr;
     return r;
@@ -33,7 +33,7 @@ void setScale(GroupModel groupModel, Scale r) {
 }
 
 
-void addModel(GroupModel groupModel,model model) {
+void addModel(GroupModel groupModel,Model model) {
     if(groupModel) {
         groupModel->models->push_back(model);
     }
@@ -76,7 +76,7 @@ void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int tim
         //glTranslatef(tmpx, tmpy, tmpz);
         drawRotation((*it)->rotation,time);
         glScalef(stmpx, stmpy, stmpz);
-        drawModel(&((*it)->models->front()));
+        drawModel(((*it)->models->front()));
 
         for (int j = 0; j < (*it)->groups->size(); j++) {
             drawTranslation((*it)->groups->at(j)->translation, time);
@@ -85,7 +85,7 @@ void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int tim
             float stmpz = scaleGetZ((*it)->groups->at(j)->scale);
             glScalef(stmpx, stmpy, stmpz);
 
-            drawModel(&(*it)->groups->at(j)->models->front());
+            drawModel((*it)->groups->at(j)->models->front());
 
         }
 
@@ -104,12 +104,12 @@ void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int tim
 void fillALLbuff(std::vector<GroupModel>::iterator it, int objectCount) {
     for (int i = 0; i < objectCount; i++) {
         glColor3b(0.0f, 0.0f, 0.0f);
-        fillBuffers(&(*it)->models->front());
+        fillBuffers((*it)->models->front());
 
        
         for(int j = 0; j < (*it)->groups->size();j++){
         
-            fillBuffers(&(*it)->groups->at(j)->models->front());
+            fillBuffers((*it)->groups->at(j)->models->front());
 
         }
 

@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <map>
 #include "xmlParser.h"
 #include "tinyxml2.h"
 #include "groupModel.h"
@@ -13,16 +14,47 @@ using namespace tinyxml2;
 using namespace std;
 
 
-void parseModels(XMLNode* models,GroupModel groupModel) {
+
+int parseTexture(Model m, XMLElement* model) {
+    if (!m || !model) return 1;
+
+    const char* textureName = model->Attribute("texture");
+    if (textureName) {
+        std::string texture = std::string(textureName);
+        setTexture(m, texture);
+    }
+    return 0;
+}
+
+int parseModels(XMLNode* models,GroupModel groupModel, std::map<std::string, Model>* usedModelsMap) {
     XMLElement* e = models->FirstChildElement("model");
     while(e != nullptr) {
-        addModel(groupModel,parseModel(e->Attribute("file")));
+        std::string fileName = std::string(e->Attribute("file"));
+        Model m = newModel();
+        if (usedModelsMap->find(fileName) == usedModelsMap->end()) {
+            int erro = parseModel(m, e->Attribute("file"));
+            if (erro) return erro;
+            usedModelsMap->insert(std::pair<std::string,Model>(fileName, m));
+        }
+        else { // SE o ficheiro modelo já tiver sido carregado
+            Model oldModel = usedModelsMap->find(fileName)->second;
+            setVertices(m, getVertices(oldModel));
+            setIndices(m, getIndices(oldModel));
+            setNormais(m, getNormais(oldModel));
+            setTextureCoords(m, getTextureCoords(oldModel));
+        }
+
+        int erro = parseTexture(m, e);
+        if (erro) return erro;
+        
+        addModel(groupModel,m);
         
 
         e = e->NextSiblingElement("model");
     }
+    return 0;
 }
-void parseTranslation(XMLNode* translation,GroupModel groupModel) {
+int parseTranslation(XMLNode* translation,GroupModel groupModel) {
     XMLElement* e = (XMLElement*) translation;
     Translation tmp = newTranslation();
     tmp->time = e->FloatAttribute("time", 0);
@@ -53,7 +85,7 @@ void parseTranslation(XMLNode* translation,GroupModel groupModel) {
     }
 
 
-
+    return 0;
 }
 
 
@@ -116,16 +148,21 @@ int parseLights(XMLNode* lights, std::vector<Light>* lightsVec) {
 }
 
 
-void parseScale(XMLNode* scale,GroupModel groupModel) {
+int parseScale(XMLNode* scale,GroupModel groupModel) {
     XMLElement* e = (XMLElement*) scale;
     Scale tmp = newScale();
     scaleSetX(tmp,e->FloatAttribute("X",0.0F));
     scaleSetY(tmp,e->FloatAttribute("Y",0.0F));
     scaleSetZ(tmp,e->FloatAttribute("Z",0.0F));
+    e = e->NextSiblingElement("scale");
+    if (e) {
+        return 1;
+    }
     setScale(groupModel,tmp);
+    return 0;
 }
 
-void parseRotation(XMLNode* rotate,GroupModel groupModel) {
+int parseRotation(XMLNode* rotate,GroupModel groupModel) {
     XMLElement* e = (XMLElement*) rotate;
     Rotation rotation = newRotation();
     rotationSetX(rotation,e->FloatAttribute("X",0.0F));
@@ -133,32 +170,36 @@ void parseRotation(XMLNode* rotate,GroupModel groupModel) {
     rotationSetZ(rotation,e->FloatAttribute("Z",0.0F));
     rotationSetAngle(rotation,e->FloatAttribute("time",0.0F));
     setRotation(groupModel,rotation);
+    return 0;
 }
 
 
-void parseGroups(XMLNode* group,GroupModel groupModel) {
-    for(XMLNode* g = group->FirstChild(); g != nullptr ; g = g->NextSibling()) {
+int parseGroups(XMLNode* group,GroupModel groupModel, std::map<std::string, Model>* modelsMap ) {
+    int erro = 0;
+    for(XMLNode* g = group->FirstChild(); g != nullptr && !erro; g = g->NextSibling()) {
         const char* type = g->Value();
         if(strcmp(type,"models") == 0) {
-            parseModels(g,groupModel);
+            erro = parseModels(g,groupModel,modelsMap);
         } else if(strcmp(type,"translate") == 0) {
-            parseTranslation(g,groupModel);
+            erro = parseTranslation(g,groupModel);
         } else if(strcmp(type,"scale") == 0) {
-            parseScale(g, groupModel);
+            erro = parseScale(g, groupModel);
         }else if(strcmp(type,"rotate") == 0) {
-            parseRotation(g,groupModel);
+            erro =parseRotation(g,groupModel);
         } else  if(strcmp(type,"group") == 0) {
             GroupModel tmp = newGroupModel();
             addGroup(groupModel,tmp);
-            parseGroups(g,tmp);
+            erro = parseGroups(g,tmp,modelsMap);
         }
-
+        if (erro) return erro;
     }
+    return 0;
 }
 
 GroupModel parseXML(std::string path, std::vector<Light>* lightsVec) {
     XMLDocument doc;
     XMLError xmlError = doc.LoadFile(path.c_str());
+    std::map<std::string, Model> * modelsMap = new std::map<std::string,Model>();
     cout << doc.ErrorStr() << endl;
     if (xmlError != XML_SUCCESS) {
         cout << "error" << endl;
@@ -185,7 +226,7 @@ GroupModel parseXML(std::string path, std::vector<Light>* lightsVec) {
     while (group != nullptr) {
         GroupModel groupModel = newGroupModel();
         addGroup(headGroup , groupModel);
-        parseGroups(group, groupModel);
+        parseGroups(group, groupModel,modelsMap);
         group = group->NextSiblingElement("group");
     }
    

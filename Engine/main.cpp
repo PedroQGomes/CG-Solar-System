@@ -23,7 +23,7 @@
 
 //std::string path = "../../../Generated Files/";
 std::string path = "../../Generated/";
-model toDraw;
+Model toDraw;
 int cur = 0;
 GroupModel tmp;
 std::vector<GroupModel>::iterator it;

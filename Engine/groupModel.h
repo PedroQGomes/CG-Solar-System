@@ -16,7 +16,7 @@ struct _groupModel {
     Rotation rotation;
     Translation translation;
     Scale scale;
-    std::vector<model> *models;
+    std::vector<Model> *models;
     std::vector<_groupModel*> *groups;
 };
 
@@ -29,9 +29,9 @@ void setRotation(GroupModel groupModel, Rotation r);
 void setTranslation(GroupModel groupModel, Translation r);
 void setScale(GroupModel groupModel, Scale r);
 void setGroup(GroupModel groupModel, std::vector<GroupModel> vector);
-void setModels(GroupModel groupModel, std::vector<model> modelvector);
+void setModels(GroupModel groupModel, std::vector<Model> modelvector);
 std::vector<_groupModel*> getGroups(GroupModel groupModel);
-void addModel(GroupModel groupModel,model model);
+void addModel(GroupModel groupModel,Model model);
 void addGroup(GroupModel groupModel,GroupModel group2);
 void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int time);
 void fillALLbuff(std::vector<GroupModel>::iterator it, int objectCount);

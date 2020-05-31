@@ -5,7 +5,7 @@ PROJECT(engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} main.cpp model.cpp parser.h parser.cpp vertex.h vertex.cpp xmlParser.cpp xmlParser.h tinyxml2.h tinyxml2.cpp groupModel.cpp groupModel.h translation.h translation.cpp rotation.cpp rotation.h scale.cpp scale.h operation3f.cpp operation3f.h catMR.cpp catMR.h)
+add_executable(${PROJECT_NAME} main.cpp model.cpp model.h parser.h parser.cpp vertex.h vertex.cpp xmlParser.cpp xmlParser.h tinyxml2.h tinyxml2.cpp groupModel.cpp groupModel.h translation.h translation.cpp rotation.cpp rotation.h scale.cpp scale.h operation3f.cpp operation3f.h catMR.cpp catMR.h lights.cpp lights.h)
 
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
