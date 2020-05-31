@@ -96,6 +96,7 @@ int main(int argc, char** argv)
 		printf("It's a bezier model!\n");
 		std::string real_path = path + argv[2];
 		BezierPatch bp = initParser(real_path);
+
 		//std::cout << real_path;
 		std::string real_path2 = path + argv[4];
 		mkBezierModel(bp, atoi(argv[3]), real_path2);

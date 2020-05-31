@@ -10,6 +10,7 @@
 #include "scale.h"
 #include "rotation.h"
 #include "lights.h"
+#include "model.h"
 using namespace tinyxml2;
 using namespace std;
 
@@ -24,6 +25,48 @@ int parseTexture(Model m, XMLElement* model) {
         setTexture(m, texture);
     }
     return 0;
+}
+int parseShine(Model m, XMLElement* model) {
+    float dif[4], spec[4], em[4], am[4];
+    for (int i = 0; i < 4; i++) {
+        if (i != 3) {
+            dif[i] = 0.8f;
+            spec[i] = 0.0f;
+            em[i] = 0.0f;
+            am[i] = 0.2f;
+        }
+        else {
+            dif[i] = 1.0f;
+            spec[i] = 1.0f;
+            em[i] = 1.0f;
+            am[i] = 1.0f;
+        }
+    }
+    if (!m || !model)
+        return 1;
+
+    model->QueryAttribute("diffR", dif);
+    model->QueryAttribute("diffG", dif + 1);
+    model->QueryAttribute("diffB", dif + 2);
+
+    model->QueryAttribute("specR", spec);
+    model->QueryAttribute("specG", spec + 1);
+    model->QueryAttribute("specB", spec + 2);
+
+    model->QueryAttribute("emR", em);
+    model->QueryAttribute("emG", em + 1);
+    model->QueryAttribute("emB", em + 2);
+
+    model->QueryAttribute("ambR", am);
+    model->QueryAttribute("ambG", am + 1);
+    model->QueryAttribute("ambB", am + 2);
+
+    setDiffuse(m, dif);
+    setSpecular(m, spec);
+    setEmissive(m, em);
+    setAmbient(m, am);
+    return 0;
+
 }
 
 int parseModels(XMLNode* models,GroupModel groupModel, std::map<std::string, Model>* usedModelsMap) {
@@ -44,7 +87,14 @@ int parseModels(XMLNode* models,GroupModel groupModel, std::map<std::string, Mod
             setTextureCoords(m, getTextureCoords(oldModel));
         }
 
-        int erro = parseTexture(m, e);
+
+        int erro = parseShine(m,e);
+        if (erro) {
+            fprintf(stderr, "PARSING FAILURE! Error parsing colors of %s file!\n", fileName.c_str());
+            return erro;
+        }
+
+        erro = parseTexture(m, e);
         if (erro) return erro;
         
         addModel(groupModel,m);

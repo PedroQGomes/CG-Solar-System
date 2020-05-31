@@ -35,12 +35,6 @@ int getNumIndexes(Model m);
 
 void freeModel(Model m);
 
-
-void initializeVBO(Model m);
-
-void drawVBO(Model m);
-
-
 std::vector<unsigned int>* getIndices(Model m);
 
 std::vector<float>* getVertices(Model m);
@@ -59,3 +53,7 @@ void setTextureCoords(Model m, std::vector<float>* v);
 void setTexture(Model m, std::string texture);
 void textureModel(Model m);
 void drawModel(Model m);
+void setAmbient(Model m, float* am);
+void setEmissive(Model m, float* em);
+void setSpecular(Model m, float* spec);
+void setDiffuse(Model m, float* dif);

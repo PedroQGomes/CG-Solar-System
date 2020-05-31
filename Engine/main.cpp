@@ -33,6 +33,7 @@ const float PI = 3.14159265358979323846;
 float angle;
 float alfa = 0.0f, beta = 0.5f, radius = 100.0f;
 float camX=5.0f, camY=5.0f, camZ=5.0f;
+float tmpX = 0.0f, tmpY = 0.0f, tmpZ = 0.0f;
 int objectCount;
 
 int moving;
@@ -78,17 +79,12 @@ void renderScene(void) {
 	glLoadIdentity();
 	//glMatrixMode(GL_PROJECTION);
 	int time = glutGet(GLUT_ELAPSED_TIME);
-	gluLookAt(camX,camY,camZ, 
+	gluLookAt(camX, camY, camZ,
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
 // put the geometric transformations here
-    glBegin(GL_LINES);
-
-   
-//  Axis in Blue
-    glColor3f(0.0f, 0.0f, 1.0f);
-   
-    glEnd();
+    
+	glTranslatef(0, 0, 0);
 	for (Light luz : lightsVec) {
 		drawLight(luz);
 	}
@@ -153,6 +149,7 @@ void processSpecialKeys(int key, int xx, int yy) {
 
 void motion(int x, int y)
 {
+	
 	if (moving == 1)
 	{
 		alfa += (x - startx) / 50;
@@ -171,6 +168,7 @@ void motion(int x, int y)
 
 void mouse(int button, int state, int x, int y)
 {
+
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
 		moving = 1;
@@ -194,7 +192,7 @@ int glMain(int argc, char**argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100, 100);
-	glutInitWindowSize(1400, 1000);
+	glutInitWindowSize(800, 800);
 	glutCreateWindow("Engine");
 	GLenum err = glewInit();
 	if (GLEW_OK != err) {

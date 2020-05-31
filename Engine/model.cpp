@@ -7,6 +7,7 @@
 #endif
 #include "model.h"
 #include <cstdio>
+#include "shine.h"
 #include <IL/il.h>
 
 int color = 0;
@@ -24,6 +25,9 @@ struct modelStruct {
 	GLuint nBuffer[1];
 	GLuint textura;
 	std::string* textureName;
+	bool isShining;
+	Shine shine;
+
 
 } ;
 
@@ -36,6 +40,9 @@ Model newModel() {
 	model->indices = new std::vector<unsigned int>();
 	model->texturas = new std::vector<float>();
 	model->normais = new std::vector<float>();
+	model->shine = newShine();
+	model->isShining = false;
+
 	
 	return model;
 }
@@ -150,7 +157,7 @@ int getSize(Model model) {
 
 void drawModel(Model m) {
 	if (m) {
-		
+		setShineness(m->shine);
 		//glcolor3f(0.0,0.0,0.0);
 		glBindBuffer(GL_ARRAY_BUFFER, m->vBuff[0]);
 		GLenum error = glGetError();
@@ -159,10 +166,11 @@ void drawModel(Model m) {
 		} 
 		glVertexPointer(3, GL_FLOAT, 0, nullptr);
 
-		glBindBuffer(GL_ARRAY_BUFFER, m->nBuffer[0]);
-		glNormalPointer(GL_FLOAT, 0, 0);
+		
 
 		if ((*(m->texturas)).size() > 0) {
+			glBindBuffer(GL_ARRAY_BUFFER, m->nBuffer[0]);
+			glNormalPointer(GL_FLOAT, 0, 0);
 			glBindBuffer(GL_ARRAY_BUFFER, m->txtBuffer[0]);
 			glTexCoordPointer(2, GL_FLOAT, 0, 0);
 			glBindTexture(GL_TEXTURE_2D, m->textura);
@@ -207,11 +215,12 @@ void fillBuffers(Model m) {
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, (*m->indices).size() * sizeof(unsigned int), index, GL_STATIC_DRAW);
 		
 		
-		glGenBuffers(1, m->nBuffer);
-		glBindBuffer(GL_ARRAY_BUFFER, m->nBuffer[0]);
-		glBufferData(GL_ARRAY_BUFFER, (*m->normais).size() * sizeof(float), normal, GL_STATIC_DRAW);
+		
 
 		if ((*m->texturas).size() > 0) {
+			glGenBuffers(1, m->nBuffer);
+			glBindBuffer(GL_ARRAY_BUFFER, m->nBuffer[0]);
+			glBufferData(GL_ARRAY_BUFFER, (*m->normais).size() * sizeof(float), normal, GL_STATIC_DRAW);
 			glGenBuffers(1, m->txtBuffer);
 			glBindBuffer(GL_ARRAY_BUFFER, m->txtBuffer[0]);
 			glBufferData(GL_ARRAY_BUFFER, (*m->texturas).size() * sizeof(float), textura, GL_STATIC_DRAW);
@@ -225,6 +234,7 @@ void fillBuffers(Model m) {
 void setTexture(Model m, std::string texture) {
 	if (m) {
 		m->textureName = new std::string(std::move(texture));
+		m->isShining = false;
 	}
 }
 
@@ -272,5 +282,34 @@ void textureModel(Model m) {
 	}
 
 }
+
+void setDiffuse(Model m, float* dif) {
+	if (!m)
+		return;
+	m->isShining = true;
+	setDiffuse(m->shine, dif);
+}
+
+void setSpecular(Model m, float* spec) {
+	if (!m)
+		return;
+	m->isShining = true;
+	setSpecular(m->shine, spec);
+}
+
+void setEmissive(Model m, float* em) {
+	if (!m)
+		return;
+	m->isShining = true;
+	setEmissive(m->shine, em);
+}
+
+void setAmbient(Model m, float* am) {
+	if (!m)
+		return;
+	m->isShining = true;
+	setAmbient(m->shine, am);
+}
+
 
 

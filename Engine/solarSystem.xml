@@ -9,7 +9,7 @@
         <group>
             <scale X="4.16" Y="4.16" Z="4.16"/>
             <models>
-                <model file="sphere.3d" texture="../../Texturas/2k_sun.jpg" />
+                <model file="sphere.3d" texture="../../Texturas/2k_sun.jpg" emR="1" emG="1" emB="1"/>
             </models>
         </group>
         <!--Cometa-->
