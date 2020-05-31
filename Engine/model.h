@@ -8,6 +8,13 @@ typedef struct Model {
 	std::vector<unsigned int> indices;
 	GLuint vBuff[1];
 	GLuint iBuff[1];
+	//new stuff
+	std::vector<float> normais;
+	std::vector<float> texturas;
+	GLuint txtBuffer[1];
+	GLuint nBuffer[1];
+	GLuint textura;
+
 } model;
 
 void addVertex(model * m, float f);
