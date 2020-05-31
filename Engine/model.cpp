@@ -7,6 +7,7 @@
 #endif
 #include "model.h"
 #include <cstdio>
+#include <IL/il.h>
 
 int color = 0;
 
@@ -102,21 +103,21 @@ void loadTexture(Model* m) {
 	if (m && m->texturas.size() > 0) {
 		unsigned int t, tw, th;
 		unsigned char* texData;
-		/*
+		
 		ilInit();
 		ilEnable(IL_ORIGIN_SET);
 		ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 		ilGenImages(1, &t);
 		ilBindImage(t);
-		ilLoadImage((ILstring)m->texture->c_str());
+		ilLoadImage((ILstring)m->textureName->c_str());
 		tw = ilGetInteger(IL_IMAGE_WIDTH);
 		th = ilGetInteger(IL_IMAGE_HEIGHT);
 		ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
 		texData = ilGetData();
 
-		glGenTextures(1, &m->textureID);
+		glGenTextures(1, &m->textura);
 
-		glBindTexture(GL_TEXTURE_2D, m->textureID);
+		glBindTexture(GL_TEXTURE_2D, m->textura);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
@@ -127,7 +128,7 @@ void loadTexture(Model* m) {
 		glGenerateMipmap(GL_TEXTURE_2D);
 
 		glBindTexture(GL_TEXTURE_2D, 0);
-		*/
+		
 	}
 
 }

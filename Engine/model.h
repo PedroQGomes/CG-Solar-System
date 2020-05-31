@@ -14,6 +14,7 @@ typedef struct Model {
 	GLuint txtBuffer[1];
 	GLuint nBuffer[1];
 	GLuint textura;
+	std::string* textureName;
 
 } model;
 
