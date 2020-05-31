@@ -7,8 +7,7 @@
 
 typedef struct bezier* BezierPatch;
 
-BezierPatch initParser(std::string file);
-void mkBezierModel(BezierPatch bp, int tess, std::string file);
-
+BezierPatch initParser(std::string fileName);
+int mkBezierModel(BezierPatch bp, int tessellation, std::string fileName);
 
 #endif BEZIER_H

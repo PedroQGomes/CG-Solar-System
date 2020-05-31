@@ -27,7 +27,7 @@
             </translate>
             <scale X="1.016" Y="1.016" Z="1.016"/>    
             <models>
-                <model file = "teapot.3d" texture="../../Texturas/2k_sun.jpg"/>
+                <model file = "teapot.3d" texture="../../Texturas/2k_uranus.jpg"/>
             </models>
         </group>
         <!--Mercury-->
