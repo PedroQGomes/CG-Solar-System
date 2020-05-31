@@ -1,12 +1,15 @@
 <?xml version = "1.0" encoding ="UTF-8" ?>
 <scene>
+    <lights>
+        <light type="POINT" posX="0" posY="0" posZ="0"/>
+    </lights>
     <!--For scaling purposes, 1 UA = 20 units-->
     <group>
         <!--Sun-->
         <group>
             <scale X="4.16" Y="4.16" Z="4.16"/>
             <models>
-                <model file="sphereVBO.3d"/>
+                <model file="sphere.3d" texture="../../Texturas/2k_sun.jpg" />
             </models>
         </group>
         <!--Cometa-->
@@ -24,7 +27,7 @@
             </translate>
             <scale X="1.016" Y="1.016" Z="1.016"/>    
             <models>
-                <model file = "teapot.3d"/>
+                <model file = "teapot.3d" texture="../../Texturas/2k_sun.jpg"/>
             </models>
         </group>
         <!--Mercury-->
@@ -40,10 +43,10 @@
                 <point X="0" Y="0" Z="12"/>
                 <point X="8.486" Y="0" Z="8.486"/>
             </translate>
-            <rotate time = "10" X = "0"  Y = "1" Z = "0"/>
+            <rotate time = "10000" X = "0"  Y = "1" Z = "0"/>
             <scale X="1.22" Y="1.22"Z="1.22"/>
             <models>
-                <model file="sphereVBO.3d"/>
+                <model file="sphere.3d" texture="../../Texturas/2k_mercury.jpg"/>
             </models>
         </group>
 
@@ -60,10 +63,10 @@
                 <point X="0" Y="0" Z="18"/>
                 <point X="12.728" Y="0" Z="12.728"/>
             </translate>
-            <rotate time = "10" X = "0"  Y = "1" Z = "0"/>
+            <rotate time = "10000" X = "0"  Y = "1" Z = "0"/>
             <scale X="1.26" Y="1.26" Z="1.26"/>
             <models>
-                <model file="sphereVBO.3d"/>
+                <model file="sphere.3d" texture="../../Texturas/2k_venus_atmosphere.jpg"/>
             </models>
         </group>
 
@@ -80,16 +83,16 @@
                 <point X="0" Y="0" Z="24"/>
                 <point X="16.971" Y="0" Z="16.971"/>
             </translate>
-            <rotate time = "10" X = "0"  Y = "1" Z = "0"/>
+            <rotate time = "10000" X = "0"  Y = "1" Z = "0"/>
             <scale X ="1.26" Y="1.26" Z="1.26"/>
             <models>
-                <model file="sphereVBO.3d"/>
+                <model file="sphere.3d" texture="../../Texturas/2k_earth_daymap.jpg"/>
             </models>
             <group>
                   <translate Y = "3.0"/>
                   <scale X="0.322" Y="0.322" Z="0.322"/>
                   <models>
-                      <model file="sphereVBO.3d"/>
+                      <model file="sphere.3d" texture="../../Texturas/2k_moon.jpg"/>
                   </models>
             </group>
         </group>
@@ -107,10 +110,10 @@
                 <point X="0" Y="0" Z="34"/>
                 <point X="24.042" Y="0" Z="24.042"/>
             </translate>
-            <rotate time = "10" X = "0"  Y = "1" Z = "0"/>
+            <rotate time = "10000" X = "0"  Y = "1" Z = "0"/>
             <scale X="1.23" Y="1.23" Z="1.23"/>
             <models>
-                <model file="sphereVBO.3d"/>
+                <model file="sphere.3d" texture="../../Texturas/2k_mars.jpg"/>
             </models>
         </group>
 
@@ -127,10 +130,10 @@
                 <point X="0" Y="0" Z="74"/>
                 <point X="52.326" Y="0" Z="52.326"/>
             </translate>
-            <rotate time = "10" X = "0"  Y = "1" Z = "0"/>
+            <rotate time = "10000" X = "0"  Y = "1" Z = "0"/>
             <scale X="1.89" Y="1.89" Z="1.89"/>
             <models>
-                <model file="sphereVBO.3d"/>
+                <model file="sphere.3d" texture="../../Texturas/2k_jupiter.jpg"/>
             </models>
         </group>
 
@@ -147,10 +150,10 @@
                 <point X="0" Y="0" Z="160"/>
                 <point X="113.137" Y="0" Z="113.137"/>
             </translate>
-            <rotate time = "10" X = "0"  Y = "1" Z = "0"/>
+            <rotate time = "10000" X = "0"  Y = "1" Z = "0"/>
             <scale X="1.78" Y="1.78" Z="1.78"/>
             <models>
-                <model file="sphereVBO.3d"/>
+                <model file="sphere.3d" texture="../../Texturas/2k_saturn.jpg"/>
             </models>
         </group>
 
@@ -167,10 +170,10 @@
                 <point X="0" Y="0" Z="354"/>
                 <point X="250.316" Y="0" Z="250.316"/>
             </translate>
-            <rotate time = "10" X = "0"  Y = "1" Z = "0"/>
+            <rotate time = "10000" X = "0"  Y = "1" Z = "0"/>
             <scale X="1.45" Y="1.45" Z="1.45"/>
             <models>
-                <model file="sphereVBO.3d"/>
+                <model file="sphere.3d" texture="../../Texturas/2k_uranus.jpg"/>
             </models>
         </group>
 
@@ -187,10 +190,10 @@
                 <point X="0" Y="0" Z="574"/>
                 <point X="405.879" Y="0" Z="405.879"/>
             </translate>
-            <rotate time = "10" X = "0"  Y = "1" Z = "0"/>
+            <rotate time = "10000" X = "0"  Y = "1" Z = "0"/>
             <scale  X="1.44" Y="1.44" Z="1.44"/>
             <models>
-                <model file="sphereVBO.3d"/>
+                <model file="sphere.3d" texture="../../Texturas/2k_neptune.jpg"/>
             </models>
         </group>
         

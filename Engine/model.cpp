@@ -10,6 +10,7 @@
 #include <IL/il.h>
 
 int color = 0;
+std::string sun = "../../Texturas/2k_sun.jpg";
 
 struct modelStruct {
 	std::vector<float> * vertices;
@@ -149,7 +150,7 @@ int getSize(Model model) {
 
 void drawModel(Model m) {
 	if (m) {
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		
 		//glcolor3f(0.0,0.0,0.0);
 		glBindBuffer(GL_ARRAY_BUFFER, m->vBuff[0]);
 		GLenum error = glGetError();
@@ -171,11 +172,12 @@ void drawModel(Model m) {
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->iBuff[0]);
 		glDrawElements(GL_TRIANGLES, (*m->indices).size(), GL_UNSIGNED_INT, NULL);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	
 
 		if ((*m->texturas).size() > 0) {
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
+		
 	} 
 	
 }
@@ -234,7 +236,8 @@ std::string getName(Model m) {
 }
 
 
-void loadTexture(Model m) {
+void textureModel(Model m) {
+
 	if (m && (*m->texturas).size() > 0) {
 		unsigned int t, tw, th;
 		unsigned char* texData;
@@ -245,6 +248,7 @@ void loadTexture(Model m) {
 		ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 		ilGenImages(1, &t);
 		ilBindImage(t);
+		//printf("%s\n", m->textureName->c_str());
 		ilLoadImage((ILstring) m->textureName->c_str());
 		tw = ilGetInteger(IL_IMAGE_WIDTH);
 		th = ilGetInteger(IL_IMAGE_HEIGHT);

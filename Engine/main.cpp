@@ -18,6 +18,7 @@
 #include "operation3f.h"
 #include "lights.h"
 #include <math.h>
+#include <IL/il.h>
 
 
 
@@ -26,6 +27,7 @@ std::string path = "../../Generated/";
 Model toDraw;
 int cur = 0;
 GroupModel tmp;
+std::vector<Light> lightsVec;
 std::vector<GroupModel>::iterator it;
 const float PI = 3.14159265358979323846;
 float angle;
@@ -87,6 +89,9 @@ void renderScene(void) {
     glColor3f(0.0f, 0.0f, 1.0f);
    
     glEnd();
+	for (Light luz : lightsVec) {
+		drawLight(luz);
+	}
 // put drawing instructions here
 	drawGroupModel(it,objectCount,time);
 
@@ -195,8 +200,26 @@ int glMain(int argc, char**argv) {
 	if (GLEW_OK != err) {
 		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
 	}
+
+
 	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	if (lightsVec.size() > 0) {
+		glEnable(GL_LIGHTING);
+		for (Light luz : lightsVec) {
+			enableLight(luz);
+			printf("aqui mongo\n");
+		}
+
+	}
+
 	fillALLbuff(it, objectCount);
+
+
+	glEnable(GL_TEXTURE_2D);
+	textureALLModels(it, objectCount);
 	// Required callback registry 
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
@@ -227,9 +250,10 @@ int glMain(int argc, char**argv) {
 
 int main(int argc, char **argv) {
 	
-	std::vector<Light> lightsVec;
+	
     tmp = parseXML("../solarSystem.xml", &lightsVec);
 
+	
 	std::vector<GroupModel> aux = getGroups(tmp);
 	
 	it = aux.begin();

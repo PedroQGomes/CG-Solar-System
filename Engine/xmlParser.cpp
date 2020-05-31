@@ -90,6 +90,7 @@ int parseTranslation(XMLNode* translation,GroupModel groupModel) {
 
 
 int parseLights(XMLNode* lights, std::vector<Light>* lightsVec) {
+    printf("aqui\n");
     XMLElement* light = lights->FirstChildElement("light");
 
     int currentLight = 0;

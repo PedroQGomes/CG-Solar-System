@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include <malloc.h>
 #include "lights.h"
+#include <stdio.h>
 
 Light newLight(GLenum i, float* pos, float* amb, float* dif, float* spec, float* sD, float sE, float sC) {
 	Light tmp = (Light)malloc(sizeof(struct light));

@@ -35,5 +35,6 @@ void addModel(GroupModel groupModel,Model model);
 void addGroup(GroupModel groupModel,GroupModel group2);
 void drawGroupModel(std::vector<GroupModel>::iterator it,int objectCount,int time);
 void fillALLbuff(std::vector<GroupModel>::iterator it, int objectCount);
+void textureALLModels(std::vector<GroupModel>::iterator it, int objectCount);
 
 #endif //CG_19_20_GROUPMODEL_H

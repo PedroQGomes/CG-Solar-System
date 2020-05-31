@@ -3,6 +3,7 @@
 //
 
 #include "groupModel.h"
+#include <IL/il.h>
 
 GroupModel newGroupModel() {
     GroupModel r = (GroupModel)(malloc(sizeof(struct _groupModel)));
@@ -121,6 +122,28 @@ void fillALLbuff(std::vector<GroupModel>::iterator it, int objectCount) {
         it--;
          
     }
+
+}
+
+
+void textureALLModels(std::vector<GroupModel>::iterator it,int objectCount) {
+    for (int i = 0; i < objectCount; i++) {
+        textureModel((*it)->models->front());
+
+        for (int j = 0; j < (*it)->groups->size(); j++) {
+            textureModel((*it)->groups->at(j)->models->front());
+        }
+
+
+        it++;
+
+    }
+    for (int j = objectCount; j > 0; j--) {
+        it--;
+
+    }
+
+
 
 }
 

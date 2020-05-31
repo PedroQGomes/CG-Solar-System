@@ -57,5 +57,5 @@ void setVertices(Model m, std::vector<float>* ver);
 void setNormais(Model m, std::vector<float>* n);
 void setTextureCoords(Model m, std::vector<float>* v);
 void setTexture(Model m, std::string texture);
-void loadTexture(Model m);
+void textureModel(Model m);
 void drawModel(Model m);
