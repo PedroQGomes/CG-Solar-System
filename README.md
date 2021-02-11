@@ -37,7 +37,7 @@ Esta fase consiste em que a aplicação geradora dos modelos crie um novo tipo d
 Esta fase consiste em que a aplicação geradora dos modelos deve criar coordenadas de textura e as normais para cada vértice. O engine por outro lado deve ter luz e as funcionalidades de textura a funcionar tal como ler e aplicar as alterações feitas aos ficheiros de modelo.
 
 
-### Dependências
+## Dependências
 
 Neste projeto são usadas as seguintes bibliotecas
 
@@ -52,6 +52,6 @@ Devil
 ```
 
 
-### Compilação e Testes
+## Compilação e Testes
 
 O projeto desenvolvido tem duas aplicações e para ambas é aconselhável o uso de um **IDE** para a a compilação e execução. No caso de escolher o **Visual Studio** é simplesmente criar um projeto com a opção de "from existing sources" e escolher e escolher a diretoria do repositório da aplicação que pretende utilizar, Generator ou Engine.
